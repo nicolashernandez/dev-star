@@ -1,2 +1,2 @@
-nh-dev-star
+dev-star
 =========

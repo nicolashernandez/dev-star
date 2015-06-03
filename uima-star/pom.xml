@@ -1,0 +1,169 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.univnantes.lina</groupId>
+		<artifactId>dev-star</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>fr.univnantes.lina.uima</groupId>
+	<artifactId>uima-star</artifactId>
+	<packaging>pom</packaging>
+	
+	<name>uima-common</name>
+
+	<description>Parent of various uima modules</description>
+	<url>https://github.com/nicolashernandez</url>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Nicolas Hernandez</name>
+			<email>nicolas.hernandez@univ-nantes.fr</email>
+			<organization>University of Nantes - LINA lab.</organization>
+			<organizationUrl>https://www.lina.univ-nantes.fr</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:nicolashernandez@github.com:nicolashernandez/dev-star.git</connection>
+		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
+		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
+	</scm>
+	<modules>
+		<module>uima-common</module>
+		<module>uima-ml-nlp</module>
+		<module>uima-connectors</module>
+		<module>uima-shell</module>
+		<module>uima-mapper</module>
+		<module>uima-dictionary-annotator</module>
+		<module>uima-opennlp</module>
+		<module>uima-maltparser</module>
+		<module>uima-text-segmenter</module>
+		<module>uima-workflow</module>
+		<module>uima-common-types</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimaj-core</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimaj-document-annotation</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimafit-core</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimafit-cpe</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>WhitespaceTokenizer</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>SnowballAnnotator</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>Tagger</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.uima</groupId>
+			<artifactId>uimaj-examples</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+		<!-- added by "Add dependency", since it is a pom and not a module the 
+			mod which inherit do not have access to the mod of the pom... <dependency> 
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId> <artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId> 
+			<version>1.6.1</version> <type>pom</type> </dependency> -->
+			
+					<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId>
+			<version>1.7.0</version>
+			<type>pom</type>
+		</dependency>
+			
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+  			de.tudarmstadt.ukp.dkpro.core.api.io-asl
+  		</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.core.io.xmi-asl</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+				<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.core.io.text-asl</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.parameter-asl</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+	
+		
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.metadata-asl</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		
+
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.coref-asl</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.api.segmentation-asl
+			</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.opennlp-asl
+			</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		
+		
+		<!--  
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.examples-asl
+			</artifactId>
+			<version>1.5.0</version>
+		</dependency>-->
+	</dependencies>
+</project>

@@ -1,0 +1,1 @@
+classpath*:common/types/commonTS.xml

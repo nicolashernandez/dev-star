@@ -7,12 +7,41 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>java-ml-nlp</artifactId>
+<name>java-ml-nlp</name>
 
-	<repositories> <repository> <id>m2localrepo</id> <url>file://${basedir}/m2localrepo</url> 
-		</repository> </repositories>
+	<description>Library to perform machine learning and natural language processing</description>
+	<url>https://github.com/nicolashernandez</url>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Nicolas Hernandez</name>
+			<email>nicolas.hernandez@univ-nantes.fr</email>
+			<organization>University of Nantes - LINA lab.</organization>
+			<organizationUrl>https://www.lina.univ-nantes.fr</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:nicolashernandez@github.com:nicolashernandez/dev-star.git</connection>
+		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
+		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
+	</scm>
+	<repositories>
+		<repository>
+			<id>m2localrepo</id>
+			<url>file://${basedir}/m2localrepo</url>
+		</repository>
+	</repositories>
 	<dependencies>
-		<dependency> <groupId>ky</groupId> <artifactId>kylm</artifactId> <version>20140117</version> 
-			</dependency>
+		<dependency>
+			<groupId>ky</groupId>
+			<artifactId>kylm</artifactId>
+			<version>20140117</version>
+		</dependency>
 		<!-- the oldest is 1.1.5 but it is not available -->
 		<dependency>
 			<groupId>edu.berkeley.nlp</groupId>
@@ -20,14 +49,12 @@
 			<version>1.1.2</version>
 		</dependency>
 
-		<!-- https://code.google.com/p/combinatoricslib/wiki/MavenConfiguration
-		Comment by mzallo...@gmail.com, Jul 17, 2013
-		When I use this, I get combinatoricslib-2.0.pom installed in the cache, 
-		but it contains an instance of "combinatoricsLib" which should be 
-		"combinatoricslib" instead. This causes an error when I do a build. 
-		Corrected by editing the cached combinatoricslib-2.0.pom, 
-		replacing Lib with lib.
- 		-->
+		<!-- https://code.google.com/p/combinatoricslib/wiki/MavenConfiguration 
+			Comment by mzallo...@gmail.com, Jul 17, 2013 When I use this, I get combinatoricslib-2.0.pom 
+			installed in the cache, but it contains an instance of "combinatoricsLib" 
+			which should be "combinatoricslib" instead. This causes an error when I do 
+			a build. Corrected by editing the cached combinatoricslib-2.0.pom, replacing 
+			Lib with lib. -->
 		<dependency>
 			<groupId>com.googlecode.combinatoricslib</groupId>
 			<artifactId>combinatoricslib</artifactId>
@@ -76,23 +103,23 @@
 		</dependency>
 
 		<dependency>
-  <groupId>org.apache.opennlp</groupId>
-  <artifactId>opennlp-tools</artifactId>
-  <version>1.5.3</version>
-</dependency>
+			<groupId>org.apache.opennlp</groupId>
+			<artifactId>opennlp-tools</artifactId>
+			<version>1.5.3</version>
+		</dependency>
 
 
-<dependency>
-    <groupId>edu.stanford.nlp</groupId>
-    <artifactId>stanford-corenlp</artifactId>
-    <version>3.3.1</version>
-</dependency>
-<dependency>
-    <groupId>edu.stanford.nlp</groupId>
-    <artifactId>stanford-corenlp</artifactId>
-    <version>3.3.1</version>
-    <classifier>models</classifier>
-</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.3.1</version>
+			<classifier>models</classifier>
+		</dependency>
 
 
 	</dependencies>

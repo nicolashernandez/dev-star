@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>fr.univnantes.lina.uima</groupId>
+    <artifactId>uima-star</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>uima-common-types</artifactId>
+  	<name>uima-common-types</name>
+
+	<description>Definition of a common uima type system</description>
+	<url>https://github.com/nicolashernandez</url>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Nicolas Hernandez</name>
+			<email>nicolas.hernandez@univ-nantes.fr</email>
+			<organization>University of Nantes - LINA lab.</organization>
+			<organizationUrl>https://www.lina.univ-nantes.fr</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:nicolashernandez@github.com:nicolashernandez/dev-star.git</connection>
+		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
+		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
+	</scm>
+</project>

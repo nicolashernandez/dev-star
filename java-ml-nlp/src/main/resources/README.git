@@ -1,0 +1,12 @@
+# git cheat sheet
+http://ndpsoftware.com/git-cheatsheet.html
+
+# 
+git add suivi d'une liste de répertoire
+
+#
+git commit -a -m 'first commit'
+
+# envoyer sur le 
+git push https://code.google.com/p/java-ml-nlp master
+git push https://code.google.com/p/java-ml-nlp

@@ -1,0 +1,55 @@
+
+
+# !!!! the following has not been reviewed since the code was moved in java-ml-nlp the 130319
+#------------------------------------------------------------------------------
+
+
+# compilation
+#------------------------------------------------------------------------------
+cd ~/applications/WordSequenceAligner-master-130220
+#javac src/com/pwnetics/metric/WordSequenceAligner.java -d bin/
+javac -cp bin  src/com/pwnetics/metric/*.java -d bin/
+javac -cp /home/hernandez/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:bin test/com/pwnetics/metric/TestWordSequenceAligner.java -d bin/
+
+
+
+
+# ajout d'une classe main qui prend des fichier REF et HYP en arguments et éventuellement un token séparateur
+#------------------------------------------------------------------------------
+
+
+# data
+#------------------------------------------------------------------------------
+single|multiple sentence
+single|multiple line
+wst
+wl a word per line
+
+ss.sl.wst
+ms.ml.wst
+ms.sl.wst
+ss.wl
+ms.wl
+5 * 2 (ref et hyp)
+
+# exécution de l'alignement
+#------------------------------------------------------------------------------
+
+# process a multi sentences files, each sentence in a line, and process each line in an independent way
+java -cp bin com.pwnetics.metric.RunWordSequenceAligner -r data/ms.ml.wst.ref -h data/ms.ml.wst.hyp -v 
+
+# consider a multi sentences files each sentence in a line, but process them as making of a single line (concatenation of all of them) 
+java -cp bin com.pwnetics.metric.RunWordSequenceAligner -r data/ms.ml.wst.ref -h data/ms.ml.wst.hyp -v -nosent
+
+# consider a text with a word per line 
+java -cp bin com.pwnetics.metric.RunWordSequenceAligner -r data/ms.wl.ref -h data/ms.wl.hyp -d '\n' -nosent
+
+
+# packaging : à la mano
+#------------------------------------------------------------------------------
+  * je run via eclipse l'export jar via le script jardesc
+  * je crée un rep word-sequence-aligner
+  * j y glisse le jar dans un sous répertoire lib
+  * + le .sh à la racine, le rep examples, la licence, et le README
+
+

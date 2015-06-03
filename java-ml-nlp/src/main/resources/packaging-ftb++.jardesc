@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="java-ml-nlp/target/ftb++-v20130205.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/java-ml-nlp/packaging-ftb++.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=java-ml-nlp/src&lt;fr.univnantes.lina.app.ftbplusplus{Process.java[Process" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=java-ml-nlp/src"/>
+        <file path="/java-ml-nlp/FTB++.README"/>
+        <file path="/java-ml-nlp/resources/ftb++.sh"/>
+        <file path="/java-ml-nlp/packaging-ftb++.jardesc"/>
+    </selectedElements>
+</jardesc>

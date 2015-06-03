@@ -1,0 +1,100 @@
+User-Agent: Mozilla Thunderbird 0.9 (Windows/20041103)
+X-Accept-Language: fr, en
+MIME-Version: 1.0
+To: marin <dumont_marin@yahoo.fr>
+References: <41C7F990.4060107@yahoo.fr>	<226ca57304122102405f083c48@mail.gmail.com>
+In-Reply-To: <41C807B7.8070504@yahoo.fr>
+Content-Type: multipart/alternative;
+X-AV-Checked: clean
+Cc: Bruno <bruno.sapene@gmail.com>, ubuntu-fr@lists.ubuntu.com
+Subject: Re: plantage au =?iso-8859-1?q?d=E9marage?=
+X-BeenThere: ubuntu-fr@lists.ubuntu.com
+X-Mailman-Version: 2.1.5
+Precedence: list
+List-Id: Liste de discussion sur Ubuntu <ubuntu-fr.lists.ubuntu.com>
+List-Unsubscribe: <http://lists.ubuntu.com/mailman/listinfo/ubuntu-fr>,
+List-Archive: <http://lists.ubuntu.com/archives/ubuntu-fr>
+List-Post: <mailto:ubuntu-fr@lists.ubuntu.com>
+List-Help: <mailto:ubuntu-fr-request@lists.ubuntu.com?subject=help>
+List-Subscribe: <http://lists.ubuntu.com/mailman/listinfo/ubuntu-fr>,
+X-List-Received-Date: Wed, 22 Dec 2004 15:59:59 -0000
+Status: O
+Content-Length: 2759
+Lines: 82
+This is a multi-part message in MIME format.
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+marin a =E9crit :
+> Bruno a =E9crit :
+>>On Tue, 21 Dec 2004 11:23:12 +0100, marin <dumont_marin@yahoo.fr> wrote=
+>> =20
+>>>Bonjour, je viens de recevoir mes cd d'ubuntu,
+>>>mais j'arrive pas a lancer l'os, quand il boot, l'=E9cran plante et ne
+>>>reconnais pas la r=E9solution je pense pcqu'il m'affiche un message co=
+>>>quand l'=E9cran est =E9teint
+>>>   =20
+>>Quel genre de message et c'est avec le CD live ou le CD d'install
+>>c'est avant l'install ou au reboot ?
+>> =20
+> c'est avec la version live
+> au moment du choix des options de boot
+> il me met le message "mode not supported" c'est un message qui=20
+> s'affiche de la meme maniere que les menu de r=E9glage de l'=E9cran, si=
+> vous voyez ce que je veux dire
+C'est bon ca marche, j'ai chang=E9 la r=E9solution au d=E9marrage avec le=
+ menu=20
+d'en bas...
+merci pour votre aide!
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+<body bgcolor="#ffffff" text="#000000">
+marin a &eacute;crit&nbsp;:
+<blockquote cite="mid41C807B7.8070504@yahoo.fr" type="cite">
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+Bruno a &eacute;crit&nbsp;:
+  <blockquote cite="mid226ca57304122102405f083c48@mail.gmail.com"
+ type="cite">
+    <pre wrap="">On Tue, 21 Dec 2004 11:23:12 +0100, marin <a
+ class="moz-txt-link-rfc2396E" href="mailto:dumont_marin@yahoo.fr">&lt;dumont_marin@yahoo.fr&gt;</a> wrote:
+  </pre>
+    <blockquote type="cite">
+      <pre wrap="">Bonjour, je viens de recevoir mes cd d'ubuntu,
+mais j'arrive pas a lancer l'os, quand il boot, l'&eacute;cran plante et ne
+reconnais pas la r&eacute;solution je pense pcqu'il m'affiche un message comme
+quand l'&eacute;cran est &eacute;teint
+    </pre>
+    </blockquote>
+    <pre wrap=""><!---->Quel genre de message et c'est avec le CD live ou le CD d'install
+c'est avant l'install ou au reboot ?
+  </pre>
+  </blockquote>
+c'est avec la version live<br>
+au moment du choix des options de boot <br>
+il me met le message "mode not supported" c'est un message qui
+s'affiche de la meme maniere que les menu de r&eacute;glage de l'&eacute;cran, si
+vous voyez ce que je veux dire<br>
+C'est bon ca marche, j'ai chang&eacute; la r&eacute;solution au d&eacute;marrage avec le
+menu d'en bas...<br>
+merci pour votre aide!<br>
+From fsc@info.fundp.ac.be Wed Dec 22 10:03:42 2004
+Received: from mx3.fundp.ac.be ([138.48.4.230])
+	by rince.africaninspace.com with esmtp (Exim 4.34)
+	id 1Ch8xh-0006ot-LA
+	for ubuntu-fr@lists.ubuntu.com; Wed, 22 Dec 2004 10:03:41 -0600
+Received: from backus.info.fundp.ac.be (backus.info.fundp.ac.be
+	by mx3.fundp.ac.be (8.11.7p1+Sun/8.11.7) with ESMTP id iBMG33M06067
+	for <ubuntu-fr@lists.ubuntu.com>; Wed, 22 Dec 2004 17:03:03 +0100 (MET)
+Received: from [127.0.0.1] (backus.info.fundp.ac.be [138.48.32.107])
+	by backus.info.fundp.ac.be (8.11.7p1+Sun/8.9.1) with ESMTP id
+	for <ubuntu-fr@lists.ubuntu.com>; Wed, 22 Dec 2004 17:03:03 +0100 (MET)
+Message-ID: <41C99A78.5020302@info.fundp.ac.be>
+Date: Wed, 22 Dec 2004 17:02:00 +0100
+From: =?ISO-8859-1?Q?Fran=E7ois_Schoubben?= <fsc@info.fundp.ac.be>
+User-Agent: Mozilla Thunderbird 0.9 (X11/20041124)
+X-Accept-Language: fr, en
+MIME-Version: 1.0
+To: ubuntu-fr@lists.ubuntu.com
+References: <355856040412220627138ed670@mail.gmail.com>	<41C9920B.1040600@laposte.net>
+In-Reply-To: <3558560404122207492768abc9@mail.gmail.com>

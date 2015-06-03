@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="java-ml-nlp">
+    <property environment="env"/>
+    <property name="UIMA_HOME" value="../UIMA-USER-DEV-ENV/applications/apache-uima"/>
+    <property name="uima-common.location" value="../uima-common"/>
+    <property name="uima-connectors.location" value="../uima-connectors"/>
+    <property name="uima-dictionary-annotator.location" value="../uima-dictionary-annotator"/>
+    <property name="uima-mapper.location" value="../uima-mapper"/>
+    <property name="uima-reportedSpeech-annotator.location" value="../uima-reportedSpeech-annotator"/>
+    <property name="uima-shell.location" value="../uima-shell"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../UIMA-USER-DEV-ENV/applications/eclipse-java-indigo-linux-gtk/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
+        <pathelement location="../UIMA-USER-DEV-ENV/applications/eclipse-java-indigo-linux-gtk/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    </path>
+    <path id="java-ml-nlp.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="${UIMA_HOME}/lib/uima-core.jar"/>
+        <pathelement location="${UIMA_HOME}/lib/uima-cpe.jar"/>
+        <pathelement location="${UIMA_HOME}/lib/uima-document-annotation.jar"/>
+        <pathelement location="${UIMA_HOME}/lib/uima-tools.jar"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="lib/commons-math3-3.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="resources">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="java-ml-nlp.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="resources"/>
+            <classpath refid="java-ml-nlp.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="test"/>
+            <classpath refid="java-ml-nlp.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="build.xml" dir="${uima-common.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${uima-common.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${uima-connectors.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${uima-connectors.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${uima-dictionary-annotator.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${uima-dictionary-annotator.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${uima-mapper.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${uima-mapper.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${uima-reportedSpeech-annotator.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${uima-reportedSpeech-annotator.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${uima-shell.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${uima-shell.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>

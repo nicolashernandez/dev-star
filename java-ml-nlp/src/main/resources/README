@@ -1,0 +1,99 @@
+Word Sequence Aligner
+
+
+La bibliothèque actuelle a été construite à partir du code source mis à disposition ici 
+https://github.com/romanows/WordSequenceAligner
+
+Elle s'accompagne d'une implémentation d'un client ligne de commande (par Nicolas Hernandez)
+RunWordSequenceAligner 
+
+
+Overview
+--------------
+WordSequenceAligner is a Java class that aligns two string sequences
+and calculates metrics such as word error rate (WER). Pretty-printing
+enables human-readable logging of alignments and metrics.
+
+This class is intended to reproduce the main functionality of the
+NIST sclite tool [1]. The Sphinx 4 source for the class
+edu.cmu.sphinx.util.NISTAlign [2] was referenced when writing the
+WordSequenceAligner code.
+
+[1] http://www.icsi.berkeley.edu/Speech/docs/sctk-1.2/sclite.htm
+[2] http://cmusphinx.sourceforge.net/sphinx4/javadoc/edu/cmu/sphinx/util/NISTAlign.html
+
+Feedback and bugfixes are welcomed.
+--------------
+Brian Romanowski
+romanows@gmail.com
+
+
+Details
+--------------
+This code is licensed under one of the BSD variants, please see
+LICENSE.txt for full details.
+(présente dans l'archive
+
+
+Command line use
+--------------
+RunWordSequenceAligner compares lines from a reference and a hypothesis texts. Both should have the same number of lines (you may force the text to be considered as a single line to avoid trouble). 
+Usually a line is a sentence whatever the number of words it has (you can specify a word delimiter).
+RunWordSequenceAligner provides a summary score, but you can also have a line score (active the verbose mode).
+If your data has a word per line. Consider only the summary score. But in that particular case, you should have the same number of words (because of the identical number of lines constraint).
+
+Usage: java -r RefFile -h HypFile [-h HypFile]... [-d wordDelimiter] [-nosent] [-v]");
+  -r RefFile (path to the reference text. Mandatory)
+  -h HypFile (path to the hypothesis text. At least one mandatory)
+  -d wordDelimiter (by default: whitespace character)
+  -nosent (process the input test as a single line; \n is the line delimiter)
+  -v (verbose)
+  
+  
+Command line example
+--------------
+./word-sequence-aligner.sh -r examples/ms.ml.wst.ref -h examples/ms.ml.wst.hyp
+
+Statistics summary
+# seq # ref # hyp cor sub ins del WER SER 
+3 116 115 0.7758621 0.10344828  0.112068966 0.12068965  0.33620688  1.0
+
+
+API Programming Example 
+--------------
+WordSequenceAligner werEval = new WordSequenceAligner();
+String [] ref = "the quick brown cow jumped over the moon".split(" ");
+String [] hyp = "quick brown cows jumped way over the moon dude".split(" ");
+Alignment a = werEval.align(ref, hyp);
+System.out.println(a);
+Produces the output:
+
+        # seq  # ref   # hyp   # cor   # sub   # ins   # del   acc     WER     # seq cor
+STATS:  1      8       9       6       1       2       1       0.75    0.5     0
+-----   -----  -----   -----   -----   -----   -----   -----   -----   -----   -----    
+REF:    THE    quick   brown   COW     jumped  ***     over    the     moon    ****
+HYP:    ***    quick   brown   COWS    jumped  WAY     over    the     moon    DUDE
+Where the top portion of the output are the statistics for the given
+pair of reference/hypothesis sentences, and the lower portion
+displays the alignment, visually.
+
+
+Output explanation
+--------------
+ref the length of the original reference sequence.
+hyp the length of the original hypothesis sequence.
+cor Number of word correct words in the aligned hypothesis with respect to the reference
+sub Number of word substitutions made in the hypothesis with respect to the reference 
+ins Number of word insertions (unnecessary words present) in the hypothesis with respect to the reference
+del Number of word deletions (necessary words missing) in the hypothesis with respect to the reference
+acc Accuracy: (cor / ref)
+WER	Word Error Rate: (sub + ins + del) / ref 
+seq cor 1 when the hypothesis exactly matches the reference
+
+In the statistics summary (when several lines occur)
+For cor, sub, ins, del you have a rate (number of ... upon number of reference words). 
+cor corresponds so to acc.
+To compute these scores all the cor, sub, ins, del operations of each line are summed before computing the rate.
+SER sentence error rate of this collection: (numSentences - numSentenceCorrect) /  numSentences
+
+

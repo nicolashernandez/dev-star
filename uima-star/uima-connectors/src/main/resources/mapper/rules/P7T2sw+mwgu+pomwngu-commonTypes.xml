@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		* Licensed to the Apache Software Foundation (ASF) under one * or more
+		contributor license agreements. See the NOTICE file * distributed with
+		this work for additional information * regarding copyright ownership.
+		The ASF licenses this file * to you under the Apache License, Version
+		2.0 (the * "License"); you may not use this file except in compliance
+		* with the License. You may obtain a copy of the License at * *
+		http://www.apache.org/licenses/LICENSE-2.0 * * Unless required by
+		applicable law or agreed to in writing, * software distributed under
+		the License is distributed on an * "AS IS" BASIS, WITHOUT WARRANTIES
+		OR CONDITIONS OF ANY * KIND, either express or implied. See the
+		License for the * specific language governing permissions and
+		limitations * under the License.
+	-->
+<rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.lina.univ-nantes.fr/uima/annotationmapper"
+	xsi:schemaLocation="annotationMapperRules.xsd">
+
+
+	<rule id="P7TSentence2CommonTypes" 
+		description="">
+		<pattern>
+			<patternElement type="common.types.extml.XMLElementAnnotation">
+				<constraint>.[@qualifiedName="SENT"]</constraint>
+				<create type="common.types.text.Sentence" >
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+
+  
+  <rule id="P7TWord-sw+mwgu+pomwngu2CommonTypes" 
+    description="">
+    <pattern>
+      <patternElement type="common.types.extml.XMLElementAnnotation">
+        <constraint>.[@qualifiedName="w" and 
+        (./*[@qualifiedName="sw" and @value="true"] 
+        or (./*[@qualifiedName="mw" and @value="true"] and ./*[@qualifiedName="gu" and @value="true"]) 
+        or (./*[@qualifiedName="po" and @value="true"] and ./*[@qualifiedName="pogu" and @value="false"])
+        )
+        ]</constraint>
+        <create type="common.types.text.Token" >
+          
+             <setFeature name="subCat" value="./*[qualifiedName='catP']/@value"/>
+	   <!-- <setFeature name="cat" value="./*[qualifiedName='cat']/@value"/>
+          <setFeature name="lemma" value="./*[qualifiedName='lemma']/@value"/>
+          <setFeature name="gender" value="./*[qualifiedName='gender']/@value"/> 
+          <setFeature name="number" value="./*[qualifiedName='number']/@value"/>
+          <setFeature name="person" value="./*[qualifiedName='person']/@value"/> 
+          <setFeature name="tense" value="./*[qualifiedName='tense']/@value"/>
+          <setFeature name="mood" value="./*[qualifiedName='mood']/@value"/>
+          <setFeature name="case" value="./*[qualifiedName='case']/@value"/> -->
+        </create>
+      </patternElement>
+    </pattern>
+  </rule>
+	
+	<!-- More rule examples in Poulard Reported Speech to common types -->
+	
+
+</rules>
+
+

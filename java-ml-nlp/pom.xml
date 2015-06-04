@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>java-ml-nlp</artifactId>
-<name>java-ml-nlp</name>
+	<name>java-ml-nlp</name>
 
 	<description>Library to perform machine learning and natural language processing</description>
 	<url>https://github.com/nicolashernandez</url>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.lexicalUnitsRecognizer.AnnotationMergerAE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Annotation Merger</name>
+    <description/>
+    <version>111102</version>
+    <vendor>Nicolas Hernandez</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>SubsumingAnnotation</name>
+        <description>type name of the subsuming annotation. Mandatory</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>SubsumedAnnotation</name>
+        <description>type name of the subsumed annotation. Optional, by default would be equal to the SubsumingAnnotation</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>strictOffset</name>
+        <description>boolean value to specify if the process should only care about duplicate (i.e. SubsumingAnnotation and SubsumedAnnotation at the same offset)</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputAnnotation</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings/>
+    <typeSystemDescription/>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

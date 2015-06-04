@@ -1,0 +1,10 @@
+
+   uima-common
+   Copyright 2011 Nicolas Hernandez
+
+   The resource loader and the prefix tree model and builder
+   is based on software developed by Jerome Rocheteau 
+   at the LINA laboratory. 
+   This code should be available from
+   		http://code.google.com/p/ttc-project/
+   

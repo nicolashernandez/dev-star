@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.common.ae.CommonAE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Common Analysis Engine</name>
+    <description>Apache 2.0 License
+
+Example of descriptor for an AE which extends the fr.univnantes.lina.uima.common.CommonAE.
+
+The name of the java class file should be changed to point the class which extends the AnalysisEngine class.
+
+New parameters can be added as well as type systems and capabilities...</description>
+    <version>101107</version>
+    <vendor>Nicolas Hernandez</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>InputView</name>
+        <description>Optional, with an internal default value "_InitialView". The view 
+			to be processed. In other words, depending on the output type, from 
+			which the sofaDataString is got or from which the input 
+			annotations are got.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ContextAnnotation</name>
+        <description>Optional, with an internal default value "uima.tcas.DocumentAnnotation". 
+			Used only when an InputAnnotation type is defined. Allow to process 
+			only some part of the view. It means that only the context 
+			annotation will be used to get the input annotations.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputAnnotation</name>
+        <description>Optional. InputAnnotation and InputFeature must be set both. Leave them free if you want to process the sofaDataString 
+			of the view (the whole view). Otherwise the command will be processed 
+			with each InputFeature of the annotations of the specified InputAnnotation type as input. Most of the time you will use coveredText as the 
+			InputFeature value.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputFeature</name>
+        <description>Optional. InputAnnotation and InputFeature must be set both. Leave them free if you want to process the sofaDataString 
+			of the view (the whole view). Otherwise the command will be processed 
+			with each InputFeature of the annotations of the specified InputAnnotation type as input. Most of the time you will use coveredText as the 
+			InputFeature value.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputView</name>
+        <description>Optional, with an internal default value set to the InputView 
+			definition (if InputView is not defined then OutputView will also be 
+			"_InitialView" by default). If OutputAnnotation is defined then the 
+			program will get the OutputView to add annotations in it. If 
+			OutputAnnotation is not defined then the program will create the view
+			OutputView and set the command result as its dataSofaString.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputViewTypeMime</name>
+        <description>Optional, with an internal default value set to "text/plain". 
+			In case of the creation of a new view, set here the type mime of 
+			the expected command result. Some examples below: text/csv, 
+			text/html, text/plain, text/xml...</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputAnnotation</name>
+        <description>Optional. Must be set both. In future, will be changed by a single 
+			parameter Feature Path.
+			Correspond to the annotation type to create and its String feature 
+			name to set with the command result. If it is not defined a view 
+			will be created. Cannot work with a not existing view in the CAS.
+Any Annotation type name et feature name can be used. In order to make 
+			quickly operable the current component, the component comes with
+			a type system which defines such type 
+			Annotation Type Name: fr.univnantes.lina.uima.shell.types.ShellAnnotation
+			Feature Name: value</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputFeature</name>
+        <description>Optional. Must be set both. In future, will be changed by a single 
+			parameter Feature Path.
+			Correspond to the annotation type to create and its String feature 
+			name to set with the command result. If it is not defined a view 
+			will be created. Cannot work with a not existing view in the CAS.
+Any Annotation type name et feature name can be used. In order to make 
+			quickly operable the current component, the component comes with
+			a type system which defines such type 
+			Annotation Type Name: fr.univnantes.lina.uima.shell.types.ShellAnnotation
+			Feature Name: value</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>OutputView</name>
+        <value>
+          <string>aNewView</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription/>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

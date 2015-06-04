@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.univnantes.lina.uima</groupId>
+		<artifactId>uima-star</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>uima-common</artifactId>
+		<name>uima-common</name>
+
+	<description>Definition of a common uima type system</description>
+	<url>https://github.com/nicolashernandez</url>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Nicolas Hernandez</name>
+			<email>nicolas.hernandez@univ-nantes.fr</email>
+			<organization>University of Nantes - LINA lab.</organization>
+			<organizationUrl>https://www.lina.univ-nantes.fr</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:nicolashernandez@github.com:nicolashernandez/dev-star.git</connection>
+		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
+		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
+	</scm>
+</project>
+
+	<!-- gestion des lib forcer un mvn install à partir des lib présents dans 
+		le répertoire lib... http://matthieu-lux.developpez.com/tutoriels/java/maven/?page=dependances#L6.4 
+		executer le mvn install via un call ant de mvn... http://maven.apache.org/guides/mini/guide-using-ant.html -->
+
+
+	<dependencies>
+		<dependency>
+			<groupId>fr.univnantes.lina</groupId>
+			<artifactId>java-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.univnantes.lina</groupId>
+			<artifactId>java-ml-nlp</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.univnantes.lina.uima</groupId>
+			<artifactId>uima-common-types</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.sizeofag</groupId>
+			<artifactId>sizeofag</artifactId>
+			<version>1.0.0</version>
+			<scope>test</scope>
+		</dependency>
+
+
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.lina.univ-nantes.fr/uima/annotationmapper"
+	xmlns="http://www.lina.univ-nantes.fr/uima/annotationmapper"
+	elementFormDefault="qualified">
+	<!--
+		* Licensed to the Apache Software Foundation (ASF) under one * or more
+		contributor license agreements. See the NOTICE file * distributed with
+		this work for additional information * regarding copyright ownership.
+		The ASF licenses this file * to you under the Apache License, Version
+		2.0 (the * "License"); you may not use this file except in compliance
+		* with the License. You may obtain a copy of the License at * *
+		http://www.apache.org/licenses/LICENSE-2.0 * * Unless required by
+		applicable law or agreed to in writing, * software distributed under
+		the License is distributed on an * "AS IS" BASIS, WITHOUT WARRANTIES
+		OR CONDITIONS OF ANY * KIND, either express or implied. See the
+		License for the * specific language governing permissions and
+		limitations * under the License.
+	-->
+
+
+	<!-- conceptSet : plusieurs rules pour créer les mêmes anntations
+	
+	-->
+	
+	<!-- context sur lequel on applique la règle avec les contraintes on veut que match aux bornes  
+	
+	-->
+	<!--
+		rule <xs:attribute name="priority" type="xs:decimal" use="optional" />
+		<xs:attribute name="confidence" type="xs:decimal" use="optional" />
+		<xs:attribute name="matchStrategy" use="required"> <xs:simpleType>
+		<xs:restriction base="xs:string"> <xs:enumeration value="matchFirst"
+		/> <xs:enumeration value="matchAll" /> <xs:enumeration
+		value="matchComplete" /> </xs:restriction> </xs:simpleType>
+		</xs:attribute> 
+		
+			-->
+				<!--
+			patternElement <xs:attribute name="positiveSet"
+		type="xs:boolean" use="optional" /> <xs:attribute name="quantifier"
+		type="xs:string" use="optional" />
+					-->
+				<!--
+		 begin et end ont des default soit
+		le patternElement soit les begin et end des patternElement des
+		extrémités du pattern la création sur un seul patternElement, peut se
+		dire de deux manières différentes ; group réfère au nieme patternElement
+		start et end désigne le begin ou le end de celui-ci
+			-->
+
+	<xs:element name="rules">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="rule" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<!-- la séquence suivante est à supprimer -->
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="rule">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="pattern" />
+				<xs:element ref="create" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="optional" />
+			<xs:attribute name="description" type="xs:string" use="optional" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="pattern">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="patternElement" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="patternElement">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="constraint" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="create" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="update" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="constraint">
+		<xs:complexType mixed="true" />
+	</xs:element>
+
+	<xs:element name="create">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="begin" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="end" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="setFeature" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="update">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="setFeature" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="begin">
+		<xs:complexType>
+			<xs:attribute name="group" use="required" type="xs:integer" />
+			<xs:attribute name="location" use="optional" default="start">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="start" />
+						<xs:enumeration value="end" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="end">
+		<xs:complexType>
+			<xs:attribute name="group" use="required" type="xs:integer" />
+			<xs:attribute name="location" use="optional" default="end">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="start" />
+						<xs:enumeration value="end" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="setFeature">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="value" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

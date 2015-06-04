@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.mapper.view.ViewMapperAE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>View Mapper</name>
+    <description>Rename views to anothers</description>
+    <version>1.0</version>
+    <vendor>The Apache Software Foundation</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>FromViewToView</name>
+        <description>Example:
+plainTextDocument -&gt; _InitialView
+_InitialView -&gt; _XMLView</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>CopyFeatureStructuresExcept</name>
+        <description>List of Feature Structures which should not be copied into the new renamed view. Works as negative filtering.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings/>
+    <typeSystemDescription>
+      <imports>
+        <import name="org.apache.uima.examples.SourceDocumentInformation"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>false</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>true</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

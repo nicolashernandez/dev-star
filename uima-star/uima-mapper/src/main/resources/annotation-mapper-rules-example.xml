@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rules>
+
+
+
+	<Rule name="" description="contrainte sur attribut de type simple encapsulé dans un type complexe et creation de deux types" priority="">
+		<Source>example.types.source.Word</Source>
+		<Constraint>.[posType[value='jj']]</Constraint>
+		<Target>example.types.target.Mot</Target>
+		<Target>example.types.target.Adjectif</Target>
+	</Rule>
+
+
+	 
+	<Rule name="" description="" priority="">
+		<Source>example.types.source.Sentence</Source>
+		<Constraint>.[
+			not(
+				wordArray[posType[contains(@value,'vb')]] 
+				or wordArray[posType[contains(@value,'be')]])
+			]</Constraint>
+		<Target>example.types.target.PhraseSansVerbe</Target>
+	</Rule>
+ 	
+
+	<Rule name="" description="contrainte sur des attributs de type simple encapsulés dans un tableau de type complexe et creation d'un type" priority="">
+	            <Source>example.types.source.Sentence</Source>
+                <Constraint>.[
+                wordArray[
+                	posType[value='(']]/
+                following-sibling::wordArray[
+                	@coveredText='said']/
+                following-sibling::wordArray[
+                	posType[contains(@value,'np')]]]
+                </Constraint>
+                <Target>example.types.target.PhraseDiscoursRapporte</Target>
+	</Rule>
+	
+	  <!-- 
+  <rule id="XMLAttributeAnnotation2OpenNLPToken" 
+    description="In the revised French Treebank format, how to select all the w element which are simple word or compound word but not a locution or a locution word ">
+    <pattern>
+      <patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+        <constraint>.[(@elementName='w') and  (contains(@attributesString,'cat="')) and (not(contains(@attributesString,',compound="')) or (contains(@attributesString,',compound="word"'))) and (not(contains(@attributesString,',raw=""'))) ]</constraint>
+        <create type="common.types.text.Token" >
+            <setFeature name="raw" value="substring-after(substring-before(./@attributesString,'&#x0022;$'),'raw=&#x0022;')"/>
+            <setFeature name="posTag" value="substring-after(substring-before(./@attributesString,'&#x0022;,ee='),'cat=&#x0022;')"/>
+            <setFeature name="lemma" value="substring-after(substring-before(./@attributesString,'&#x0022;,mph='),'lemma=&#x0022;')"/>
+            <setFeature name="mph" value="substring-after(substring-before(./@attributesString,'&#x0022;,subcat='),'mph=&#x0022;')"/>
+            <setFeature name="subCat" value="substring-after(substring-before(./@attributesString,'&#x0022;,raw='),'subcat=&#x0022;')"/> 
+            
+        </create>
+      </patternElement>
+    </pattern>
+  </rule>
+  
+  <rule id="XMLAttributeAnnotation2OpenNLPToken" 
+    description="In the revised French Treebank format, how to select all the w element which are a locution word">
+    <pattern>
+      <patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+        <constraint>.[(@elementName='w') and (contains(@attributesString,'compoundPart="locution"')) and (not(contains(@attributesString,',raw=""')))]</constraint>
+        <create type="common.types.text.Token" >
+            <setFeature name="raw" value="substring-after(substring-before(./@attributesString,'&#x0022;$'),'raw=&#x0022;')"/>
+            <setFeature name="posTag" value="substring-after(substring-before(./@attributesString,'&#x0022;,raw='),'catint=&#x0022;')"/>
+            <setFeature name="lemma" value=" translate(substring-after(substring-before(./@attributesString, '&#x0022;$'),'raw=&#x0022;'), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')"/>
+         </create>
+      </patternElement>
+    </pattern>
+  </rule>-->
+	<!-- Différents tests de sources  
+		FAIL java.lang.ClassNotFoundException: uima.tcas.Annotation 
+		FAIL org.apache.uima.analysis_engine.AnalysisEngineProcessException: EXCEPTION MESSAGE LOCALIZATION FAILED: java.util.MissingResourceException: Can't find resource for bundle java.util.PropertyResourceBundle, key Debug: Le type org.apache.uima.jcas.tcas.Annotation n'est pas déclaré dans le TypeSystem !
+	at fr.univnantes.lina.uima.TypeMapperAE.process(TypeMapperAE.java:90)
+		FAIL java.lang.ClassNotFoundException: example.types.target.Annotation
+	-->
+	<!-- //*[posString='np'] lourd-->
+<!--	<Rule name="" description="" priority="">
+		<Source>example.types.source.Sentence</Source>
+ 		<Constraint>//*[posString='np']</Constraint>
+		<Target>example.types.target.Test</Target>
+	</Rule>
+-->
+	
+</Rules>

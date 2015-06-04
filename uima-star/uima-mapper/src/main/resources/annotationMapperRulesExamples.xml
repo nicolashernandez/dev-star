@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		* Licensed to the Apache Software Foundation (ASF) under one * or more
+		contributor license agreements. See the NOTICE file * distributed with
+		this work for additional information * regarding copyright ownership.
+		The ASF licenses this file * to you under the Apache License, Version
+		2.0 (the * "License"); you may not use this file except in compliance
+		* with the License. You may obtain a copy of the License at * *
+		http://www.apache.org/licenses/LICENSE-2.0 * * Unless required by
+		applicable law or agreed to in writing, * software distributed under
+		the License is distributed on an * "AS IS" BASIS, WITHOUT WARRANTIES
+		OR CONDITIONS OF ANY * KIND, either express or implied. See the
+		License for the * specific language governing permissions and
+		limitations * under the License.
+	-->
+<rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.lina.univ-nantes.fr/uima/annotationmapper"
+	xsi:schemaLocation="annotationMapperRules.xsd">
+	
+
+	<rule id="Word2Mot,Nom" 
+		description="contrainte sur attribut de type simple encapsulé dans un type complexe et creation de deux types">
+		<pattern>
+			<patternElement type="example.types.source.Word">
+				<constraint>.[posType[value='nn']]</constraint>
+				<create type="example.types.target.Mot" />
+				<create type="example.types.target.Nom" />
+			</patternElement>
+		</pattern>
+	</rule>
+	
+	<rule id="Word2Adjectif" 
+		description="setFeature">
+		<pattern>
+			<patternElement type="example.types.source.Word">
+				<constraint>.[posType[value='jj']]</constraint>
+				<create type="example.types.target.Adjectif" >
+					<!-- <setFeature name="pos" value=".[posType[value]]"/> -->
+					<setFeature name="pos" value="./posType/@value"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+
+	<rule  id="PhraseSansVerbe" description="opérateurs booleens">
+		<pattern>
+			<patternElement type="example.types.source.Sentence">
+				<constraint>.[
+					not(
+					wordArray[posType[contains(@value,'vb')]]
+					or
+					wordArray[posType[contains(@value,'be')]])
+					]</constraint>
+				<create type="example.types.target.PhraseSansVerbe" />
+			</patternElement>
+		</pattern>
+	</rule>
+
+	<rule id="PhraseDiscoursRapporte"
+		description="contrainte sur des attributs de type simple encapsulés dans un tableau de type complexe et creation d'un type">
+		<pattern>
+			<patternElement type="example.types.source.Sentence">
+				<constraint>.[
+					wordArray[
+					posType[value='(']]/
+					following-sibling::wordArray[
+					@coveredText='said']/
+					following-sibling::wordArray[
+					posType[contains(@value,'np')]]]
+				</constraint>
+				<create type="example.types.target.PhraseDiscoursRapporte" />
+			</patternElement>
+		</pattern>
+	</rule>
+
+	<rule id="NOMdeNOM">
+		<pattern>
+			<patternElement type="example.types.source.Word">
+				<constraint>.[posType[value='nn'] and matches(@coveredText,'^[A-Z]')]
+				</constraint>
+			</patternElement>
+			<patternElement type="example.types.source.Word">
+				<constraint>.[@coveredText='de']</constraint>
+			</patternElement>
+			<patternElement type="example.types.source.Word">
+				<constraint>.[posType[value='nn'] and matches(@coveredText,'^[A-Z]')]
+				</constraint>
+			</patternElement>
+
+		</pattern>
+		<create type="example.type.NounPhrase">
+			<begin group="0" />
+			<end group="0" />
+		</create>
+	</rule>
+	
+	<!-- 
+	<rule id="XMLAttributeAnnotationW2TokenAnnotationPosTag" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLAttributeAnnotation">
+				<constraint>.[elementName='w' and attributeName='cat']</constraint>
+				<create type="org.apache.uima.TokenAnnotation" >
+					<setFeature name="posTag" value=""/>
+					<setFeature name="" value=""/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+ -->
+ 
+	<!--
+		Différents tests de sources FAIL java.lang.ClassNotFoundException:
+		uima.tcas.Annotation FAIL
+		org.apache.uima.analysis_engine.AnalysisEngineProcessException:
+		EXCEPTION MESSAGE LOCALIZATION FAILED:
+		java.util.MissingResourceException: Can't find resource for bundle
+		java.util.PropertyResourceBundle, key Debug: Le type
+		org.apache.uima.jcas.tcas.Annotation n'est pas déclaré dans le
+		TypeSystem ! at
+		fr.univnantes.lina.uima.TypeMapperAE.process(TypeMapperAE.java:90)
+		FAIL java.lang.ClassNotFoundException: example.types.target.Annotation
+	-->
+	<!-- //*[posString='np'] lourd-->
+	<!--
+		<Rule name="" description="" priority="">
+		<Source>example.types.source.Sentence</Source>
+		<Constraint>//*[posString='np']</Constraint>
+		<Target>example.types.target.Test</Target> </Rule>
+	-->
+
+
+	<!--
+
+
+		<rule description=""> <pattern> <patternElement type="">
+		<constraint></constraint> <create type=""/> </patternElement>
+		</pattern> </rule> <rule id="" description=""> <pattern>
+		<patternElement type=""> <constraint></constraint> <create type="">
+		</create> <create type=""> <setFeature name="" value="" /> </create>
+		<update type=""> <setFeature name="" value="" /> </update>
+		</patternElement> <create type="" > <begin group="" location="" />
+		<end group="" location="" /> <setFeature name="" value="" /> </create>
+		</pattern> </rule>
+	-->
+
+</rules>
+
+

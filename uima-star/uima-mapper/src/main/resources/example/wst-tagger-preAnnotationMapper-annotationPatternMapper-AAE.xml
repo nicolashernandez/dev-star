@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="annotationPatternMapperAE">
+      <import name="common.TestLocatedAnnotationAE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="post-annotation-mapper_AE">
+      <import name="example.post-annotation-mapper_AE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="annotationMapperAAE">
+      <import name="example.annotationMapperAAE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="WhitespaceTokenizer">
+      <import name="WhitespaceTokenizer"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="pre-annotation-mapper_AE">
+      <import name="example.pre-annotation-mapper_AE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="HmmTagger">
+      <import name="HmmTagger"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>Type Mapping Aggregate example</name>
+    <description>Illustration du Type mapper dans une chaîne composée du Apache WhitespaceTokenizer, du Apache HmmTagger et d'un AE factice produisant des structures de type complexe et  du Type Mapper.</description>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters searchStrategy="language_fallback"/>
+    <configurationParameterSettings/>
+    <flowConstraints>
+      <fixedFlow>
+        <node>WhitespaceTokenizer</node>
+        <node>HmmTagger</node>
+        <node>pre-annotation-mapper_AE</node>
+        <node>annotationPatternMapperAE</node>
+      </fixedFlow>
+    </flowConstraints>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">example.types.source.Word</type>
+          <type allAnnotatorFeatures="true">example.types.source.Sentence</type>
+          <type allAnnotatorFeatures="true">example.types.target.Phrase</type>
+          <type allAnnotatorFeatures="true">example.types.target.Numeriq</type>
+          <type allAnnotatorFeatures="true">example.types.target.NomPropre</type>
+          <type allAnnotatorFeatures="true">example.types.target.NomCommun</type>
+          <type allAnnotatorFeatures="true">example.types.target.Nom</type>
+          <type allAnnotatorFeatures="true">example.types.target.Mot</type>
+          <type allAnnotatorFeatures="true">example.types.target.PhraseSeqNpVerbTagCd</type>
+          <type allAnnotatorFeatures="true">example.types.target.PhraseSansVerbe</type>
+          <type allAnnotatorFeatures="true">example.types.target.PhraseDiscoursRapporte</type>
+          <type allAnnotatorFeatures="true">example.types.target.PhraseDebutantParNPDansFSArray</type>
+          <type allAnnotatorFeatures="true">example.types.target.PhraseDebutantParDetDansStringArray</type>
+          <type allAnnotatorFeatures="true">example.types.target.PhraseSansVerbeAvecCoveredText</type>
+          <type allAnnotatorFeatures="true">example.types.target.Adjectif</type>
+          <type allAnnotatorFeatures="true">example.types.target.Test</type>
+          <type allAnnotatorFeatures="true">example.types.target.Annotation</type>
+          <type allAnnotatorFeatures="true">example.types.source.DiscourseSegment</type>
+          <type allAnnotatorFeatures="true">org.apache.uima.TokenAnnotation</type>
+          <type allAnnotatorFeatures="true">org.apache.uima.SentenceAnnotation</type>
+          <type allAnnotatorFeatures="true">example.types.source.POS</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

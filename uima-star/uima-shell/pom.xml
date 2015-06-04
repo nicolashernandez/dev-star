@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.univnantes.lina.uima</groupId>
+		<artifactId>uima-star</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>uima-shell</artifactId>
+	<name>uima-shell</name>
+
+	<description>Offer an easy solution to embed external tools and analysers available in command line</description>
+	<url>https://github.com/nicolashernandez</url>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Nicolas Hernandez</name>
+			<email>nicolas.hernandez@univ-nantes.fr</email>
+			<organization>University of Nantes - LINA lab.</organization>
+			<organizationUrl>https://www.lina.univ-nantes.fr</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:nicolashernandez@github.com:nicolashernandez/dev-star.git</connection>
+		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
+		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
+	</scm>
+	<repositories>
+		<repository>
+			<id>m2localrepo</id>
+			<url>file://${basedir}/m2localrepo</url>
+		</repository>
+		<repository>
+			<id>ow2-legacy</id>
+			<url>http://repository.ow2.org/nexus/content/repositories/ow2-legacy/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+
+		<dependency>
+			<groupId>fr.univnantes.lina.uima</groupId>
+			<artifactId>uima-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.developpez.adiguba</groupId>
+			<artifactId>Shell</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

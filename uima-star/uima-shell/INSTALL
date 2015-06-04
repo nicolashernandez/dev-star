@@ -1,0 +1,10 @@
+# Install
+
+   mkdir m2localrepo
+
+   export JAR=tmp/lib/Shell.jar
+   export GROUPID=com.developpez.adiguba
+   export ARTIFACTID=shell
+   export VERSION=1.0
+   export M2LOCALREPO=m2localrepo
+   mvn org.apache.maven.plugins:maven-install-plugin:2.3.1:install-file -Dfile=$JAR -DgroupId=$GROUPID -DartifactId=$ARTIFACTID -Dversion=$VERSION -Dpackaging=jar -DlocalRepositoryPath=`pwd`/$M2LOCALREPO

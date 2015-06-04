@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="ShellAE2">
+      <import name="shell.ShellAE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="ShellAE">
+      <import name="shell.ShellAE"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>example of inputView to outputView</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters searchStrategy="language_fallback">
+      <configurationParameter>
+        <name>InputView</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/InputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ContextAnnotation</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/ContextAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputAnnotation</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/InputAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputView</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputViewTypeMime</name>
+        <description>In case of the creation of a new view, set here the type mime of the expected command result. Some examples below
+text/csv
+text/html
+text/plain
+text/xml</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputViewTypeMime</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PreCommandTokens</name>
+        <description>The specified CAS element to analyze into a file argument and to consider it via its file name reference as the central point of the command line to execute. 
+Each command and argument will be seen as a token. The precmdtokens parameter is used to specify the command and/or argument tokens which precede the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>ShellAE/PreCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PostCommandTokens</name>
+        <description>The specified CAS element to analyze into a file  argument and to consider it via its file name reference as the central point of the command line to execute. 
+And the postcmdtokens, to specify the command and/or argument tokens which follow the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/PostCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputView1</name>
+        <description>Optional, with an internal default value "_InitialView". The view 
+			to be processed. In other words, depending on the output type, from 
+			which the sofaDataString is got or from which the input 
+			annotations are got.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE2/InputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputView1</name>
+        <description>Optional, with an internal default value set to the InputView 
+			definition (if InputView is not defined then OutputView will also be 
+			"_InitialView" by default). If OutputAnnotation is defined then the 
+			program will get the OutputView to add annotations in it. If 
+			OutputAnnotation is not defined then the program will create the view
+			OutputView and set the command result as its dataSofaString.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE2/OutputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputAnnotation1</name>
+        <description>Optional. Must be set both. In future, will be changed by a single 
+			parameter Feature Path.
+			Correspond to the annotation type to create and its String feature 
+			name to set with the command result. If it is not defined a view 
+			will be created. Cannot work with a not existing view in the CAS.
+Any Annotation type name et feature name can be used. In order to make 
+			quickly operable the current component, the component comes with
+			a type system which defines such type 
+			Annotation Type Name: fr.univnantes.lina.uima.shell.types.ShellAnnotation
+			Feature Name: value</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE2/OutputAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputFeature1</name>
+        <description>Optional. Must be set both. In future, will be changed by a single 
+			parameter Feature Path.
+			Correspond to the annotation type to create and its String feature 
+			name to set with the command result. If it is not defined a view 
+			will be created. Cannot work with a not existing view in the CAS.
+Any Annotation type name et feature name can be used. In order to make 
+			quickly operable the current component, the component comes with
+			a type system which defines such type 
+			Annotation Type Name: fr.univnantes.lina.uima.shell.types.ShellAnnotation
+			Feature Name: value</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE2/OutputFeature</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PreCommandTokens1</name>
+        <description>Mandatory and multiValued. The specified CAS element to analyze will 
+    		be turn into a file argument and to consider it via its file name 
+    		reference as the central point of the command line to execute. Each 
+    		command and/or argument can be seen as a token in order to make 
+    		easier the reading. 
+    		The PreCommandTokens parameter is used to specify the command and/or
+    		argument tokens which PRECEDE the file argument.
+    		If the command to process takes its input as a pipe then set the 
+    		PreCommandTokens with a "cat" value and start the PostCommandTokens 
+    		with "| " followed by the command. 
+    		If the command to process takes its input as an argument at a 
+    		specific position then set the PreCommandTokens with the command and
+    		the first arguments and set the PostCommandTokens with the last arguments.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>ShellAE2/PreCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PostCommandTokens1</name>
+        <description>Optional and and multiValued. The specified CAS element to analyze will 
+    		be turn into a file argument and to consider it via its file name 
+    		reference as the central point of the command line to execute. Each 
+    		command and/or argument can be seen as a token in order to make 
+    		easier the reading. 
+			And the PostCommandTokens parameter is used to specify the command 
+			and/or argument tokens which FOLLOW the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE2/PostCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>OutputViewTypeMime</name>
+        <value>
+          <string>text/plain</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>PreCommandTokens</name>
+        <value>
+          <array>
+            <string>cat</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>PostCommandTokens</name>
+        <value>
+          <array>
+            <string>| perl -ne "tr/a-z/A-Z/; print;"</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputView</name>
+        <value>
+          <string>_SecondView</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputView1</name>
+        <value>
+          <string>_ThirdView</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>PreCommandTokens1</name>
+        <value>
+          <array>
+            <string>cat</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputView1</name>
+        <value>
+          <array>
+            <string>_InitialView</string>
+            <string>_SecondView</string>
+          </array>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+        <node>ShellAE</node>
+        <node>ShellAE2</node>
+      </fixedFlow>
+    </flowConstraints>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">fr.univnantes.lina.uima.shell.types.ShellAnnotation</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

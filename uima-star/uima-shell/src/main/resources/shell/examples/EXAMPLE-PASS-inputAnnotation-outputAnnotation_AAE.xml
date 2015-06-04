@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="WhitespaceTokenizer">
+      <import name="WhitespaceTokenizer"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="ShellAE">
+      <import name="shell.ShellAE"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>example of inputAnnotation to outputAnnotation</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters searchStrategy="language_fallback">
+      <configurationParameter>
+        <name>InputView</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/InputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ContextAnnotation</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/ContextAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputAnnotation</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/InputAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputFeature</name>
+        <description>Optional. InputAnnotation and InputFeature must be set both. Leave them free if you want to process the sofaDataString 
+			of the view (the whole view). Otherwise the command will be processed 
+			with each InputFeature of the annotations of the specified InputAnnotation type as input. Most of the time you will use coveredText as the 
+			InputFeature value.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/InputFeature</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputView</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputViewTypeMime</name>
+        <description>In case of the creation of a new view, set here the type mime of the expected command result. Some examples below
+text/csv
+text/html
+text/plain
+text/xml</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputViewTypeMime</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputAnnotation</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputFeature</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputFeature</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PreCommandTokens</name>
+        <description>The specified CAS element to analyze into a file argument and to consider it via its file name reference as the central point of the command line to execute. 
+Each command and argument will be seen as a token. The precmdtokens parameter is used to specify the command and/or argument tokens which precede the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>ShellAE/PreCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PostCommandTokens</name>
+        <description>The specified CAS element to analyze into a file  argument and to consider it via its file name reference as the central point of the command line to execute. 
+And the postcmdtokens, to specify the command and/or argument tokens which follow the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/PostCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>EnvironmentVariables</name>
+        <description>Optional. Array of strings, each element of which has environment variable
+			settings in the format name=value, or null if the process 
+			should inherit the environment of the current process (leave it
+			empty for the null value). Can be used to define variables which 
+			will be used in the command lines.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/EnvironmentVariables</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>PreCommandTokens</name>
+        <value>
+          <array>
+            <string>${USR_BIN_DIR}/wc -w</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>PostCommandTokens</name>
+        <value>
+          <array>
+            <string>| cut -d ' ' -f 1</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputAnnotation</name>
+        <value>
+          <array>
+            <string>org.apache.uima.SentenceAnnotation</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputAnnotation</name>
+        <value>
+          <string>fr.univnantes.lina.uima.shell.types.ShellAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputFeature</name>
+        <value>
+          <string>value</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>EnvironmentVariables</name>
+        <value>
+          <array>
+            <string>USR_BIN_DIR=/usr/bin/</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputFeature</name>
+        <value>
+          <string>coveredText</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+        <node>WhitespaceTokenizer</node>
+        <node>ShellAE</node>
+      </fixedFlow>
+    </flowConstraints>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">org.apache.uima.TokenAnnotation</type>
+          <type allAnnotatorFeatures="true">org.apache.uima.SentenceAnnotation</type>
+          <type allAnnotatorFeatures="true">fr.univnantes.lina.uima.shell.types.ShellAnnotation</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

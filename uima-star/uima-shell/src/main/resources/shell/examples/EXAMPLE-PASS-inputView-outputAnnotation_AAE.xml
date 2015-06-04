@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="ShellAE">
+      <import name="shell.ShellAE"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>example of inputView to outputAnnotation</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters searchStrategy="language_fallback">
+      <configurationParameter>
+        <name>InputView</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/InputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ContextAnnotation</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/ContextAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputAnnotation</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/InputAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputView</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputView</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputViewTypeMime</name>
+        <description>In case of the creation of a new view, set here the type mime of the expected command result. Some examples below
+text/csv
+text/html
+text/plain
+text/xml</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputViewTypeMime</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputAnnotation</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputAnnotation</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputFeature</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/OutputFeature</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PreCommandTokens</name>
+        <description>The specified CAS element to analyze into a file argument and to consider it via its file name reference as the central point of the command line to execute. 
+Each command and argument will be seen as a token. The precmdtokens parameter is used to specify the command and/or argument tokens which precede the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>ShellAE/PreCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PostCommandTokens</name>
+        <description>The specified CAS element to analyze into a file  argument and to consider it via its file name reference as the central point of the command line to execute. 
+And the postcmdtokens, to specify the command and/or argument tokens which follow the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>ShellAE/PostCommandTokens</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>PreCommandTokens</name>
+        <value>
+          <array>
+            <string>cat</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>PostCommandTokens</name>
+        <value>
+          <array>
+            <string>| perl -ne 's/(\w)([\.,?])/$1 $2/g; s/ /\n/g; print'</string>
+            <string>| sort</string>
+            <string>| uniq</string>
+            <string>| wc -l</string>
+          </array>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputAnnotation</name>
+        <value>
+          <string>fr.univnantes.lina.uima.shell.types.ShellAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputFeature</name>
+        <value>
+          <string>value</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+        <node>ShellAE</node>
+      </fixedFlow>
+    </flowConstraints>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">fr.univnantes.lina.uima.shell.types.ShellAnnotation</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

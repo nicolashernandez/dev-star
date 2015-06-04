@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.shell.ae.ShellAE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Shell wrapper</name>
+    <description>Apache 2.0 License
+
+Execute any Shell command by taking any view or annotation as input and by creating a new annotation/feature or view for storing the result</description>
+    <version>100330</version>
+    <vendor>Nicolas Hernandez</vendor>
+    <configurationParameters>
+      <configurationParameter>
+        <name>RunId</name>
+        <description>Optional, used to distinguish several runs with the same command 
+			when the output type is an annotation with the runId feature.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputView</name>
+        <description>Optional, with an internal default value "_InitialView". The view 
+			to be processed. In other words, depending on the output type, from 
+			which the sofaDataString is got or from which the input 
+			annotations are got.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ContextAnnotation</name>
+        <description>Optional, with an internal default value "uima.tcas.DocumentAnnotation". 
+			Used only when an InputAnnotation type is defined. Allow to process 
+			only some part of the view. It means that only the context 
+			annotation will be used to get the input annotations.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputAnnotation</name>
+        <description>Optional. InputAnnotation and InputFeature must be set both. Leave them free if you want to process the sofaDataString 
+			of the view (the whole view). Otherwise the command will be processed 
+			with each InputFeature of the annotations of the specified InputAnnotation type as input. Most of the time you will use coveredText as the 
+			InputFeature value.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputFeature</name>
+        <description>Optional. InputAnnotation and InputFeature must be set both. Leave them free if you want to process the sofaDataString 
+			of the view (the whole view). Otherwise the command will be processed 
+			with each InputFeature of the annotations of the specified InputAnnotation type as input. Most of the time you will use coveredText as the 
+			InputFeature value.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputView</name>
+        <description>Optional, with an internal default value set to the InputView 
+			definition (if InputView is not defined then OutputView will also be 
+			"_InitialView" by default). If OutputAnnotation is defined then the 
+			program will get the OutputView to add annotations in it. If 
+			OutputAnnotation is not defined then the program will create the view
+			OutputView and set the command result as its dataSofaString.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputViewTypeMime</name>
+        <description>Optional, with an internal default value set to "text/plain". 
+			In case of the creation of a new view, set here the type mime of 
+			the expected command result. Some examples below: text/csv, 
+			text/html, text/plain, text/xml...</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputAnnotation</name>
+        <description>Optional. Must be set both. In future, will be changed by a single 
+			parameter Feature Path.
+			Correspond to the annotation type to create and its String feature 
+			name to set with the command result. If it is not defined a view 
+			will be created. Cannot work with a not existing view in the CAS.
+Any Annotation type name et feature name can be used. In order to make 
+			quickly operable the current component, the component comes with
+			a type system which defines such type 
+			Annotation Type Name: fr.univnantes.lina.uima.shell.types.ShellAnnotation
+			Feature Name: value</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputFeature</name>
+        <description>Optional. Must be set both. In future, will be changed by a single 
+			parameter Feature Path.
+			Correspond to the annotation type to create and its String feature 
+			name to set with the command result. If it is not defined a view 
+			will be created. Cannot work with a not existing view in the CAS.
+Any Annotation type name et feature name can be used. In order to make 
+			quickly operable the current component, the component comes with
+			a type system which defines such type 
+			Annotation Type Name: fr.univnantes.lina.uima.shell.types.ShellAnnotation
+			Feature Name: value</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>EnvironmentVariables</name>
+        <description>Optional. Array of strings, each element of which has environment variable
+			settings in the format name=value, or null if the process 
+			should inherit the environment of the current process (leave it
+			empty for the null value). Can be used to define variables which 
+			will be used in the command lines.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>WorkingDirectory</name>
+        <description>Optional. The working directory of the process, or null if the process 
+        	should inherit the working directory of the current process. 
+        	Leave it empty for the null value.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>CharsetName</name>
+        <description>Optional. Encoding to use for reading the process inputStream</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PreCommandTokens</name>
+        <description>Mandatory and multiValued. The specified CAS element to analyze will 
+    		be turn into a file argument and to consider it via its file name 
+    		reference as the central point of the command line to execute. Each 
+    		command and/or argument can be seen as a token in order to make 
+    		easier the reading. 
+    		The PreCommandTokens parameter is used to specify the command and/or
+    		argument tokens which PRECEDE the file argument.
+    		If the command to process takes its input as a pipe then set the 
+    		PreCommandTokens with a "cat" value and start the PostCommandTokens 
+    		with "| " followed by the command. 
+    		If the command to process takes its input as an argument at a 
+    		specific position then set the PreCommandTokens with the command and
+    		the first arguments and set the PostCommandTokens with the last arguments.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PostCommandTokens</name>
+        <description>Optional and and multiValued. The specified CAS element to analyze will 
+    		be turn into a file argument and to consider it via its file name 
+    		reference as the central point of the command line to execute. Each 
+    		command and/or argument can be seen as a token in order to make 
+    		easier the reading. 
+			And the PostCommandTokens parameter is used to specify the command 
+			and/or argument tokens which FOLLOW the file argument.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>PreCommandTokens</name>
+        <value>
+          <array/>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>PostCommandTokens</name>
+        <value>
+          <array/>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>EnvironmentVariables</name>
+        <value>
+          <array/>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <types>
+        <typeDescription>
+          <name>fr.univnantes.lina.uima.shell.types.ShellAnnotation</name>
+          <description/>
+          <supertypeName>fr.univnantes.lina.uima.types.OneDimensionAnnotation</supertypeName>
+          <features>
+            <featureDescription>
+              <name>value</name>
+              <description/>
+              <rangeTypeName>uima.cas.String</rangeTypeName>
+            </featureDescription>
+          </features>
+        </typeDescription>
+        <typeDescription>
+          <name>fr.univnantes.lina.uima.types.OneDimensionAnnotation</name>
+          <description/>
+          <supertypeName>uima.tcas.Annotation</supertypeName>
+          <features>
+            <featureDescription>
+              <name>componentId</name>
+              <description/>
+              <rangeTypeName>uima.cas.String</rangeTypeName>
+            </featureDescription>
+            <featureDescription>
+              <name>runId</name>
+              <description/>
+              <rangeTypeName>uima.cas.String</rangeTypeName>
+            </featureDescription>
+          </features>
+        </typeDescription>
+      </types>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">fr.univnantes.lina.uima.shell.types.ShellAnnotation</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

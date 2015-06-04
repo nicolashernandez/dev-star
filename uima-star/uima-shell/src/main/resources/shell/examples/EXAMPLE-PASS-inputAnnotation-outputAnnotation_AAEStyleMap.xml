@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<styleMap>
+<rule>
+<pattern>org.apache.uima.TokenAnnotation</pattern>
+<label>TokenAnnotation</label>
+<style>color:black; background:lightblue;</style>
+</rule>
+<rule>
+<pattern>org.apache.uima.SentenceAnnotation</pattern>
+<label>SentenceAnnotation</label>
+<style>color:black; background:lightgreen;</style>
+</rule>
+<rule>
+<pattern>fr.univnantes.lina.uima.shell.types.ShellAnnotation</pattern>
+<label>ShellAnnotation</label>
+<style>color:black; background:orange;</style>
+</rule>
+</styleMap>
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="importTS-AE">
+      <import name="common.types.importTS-AE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="whitespaceTokenizerAE">
+      <import name="mlnlp.analysis.text.whitespaceTokenizerAE"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>whitespaceTokenizerAAE</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>TokenType</name>
+        <description>Type name of the token annotation to create. Optional, by default org.apache.uima.TokenAnnotation</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>whitespaceTokenizerAE/TokenType</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>SentenceType</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>whitespaceTokenizerAE/SentenceType</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>TokenType</name>
+        <value>
+          <string>common.types.text.Token</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>SentenceType</name>
+        <value>
+          <string>common.types.text.Sentence</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+        <node>importTS-AE</node>
+        <node>whitespaceTokenizerAE</node>
+      </fixedFlow>
+    </flowConstraints>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

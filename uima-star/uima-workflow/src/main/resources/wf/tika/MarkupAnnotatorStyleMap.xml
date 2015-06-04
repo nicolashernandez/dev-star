@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<styleMap>
+<rule>
+<pattern>org.apache.uima.MarkupAnnotation</pattern>
+<label>MarkupAnnotation</label>
+<style>color:black; background:lightblue;</style>
+</rule>
+</styleMap>
+

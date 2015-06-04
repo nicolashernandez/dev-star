@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.mlnlp.analysis.lexical.VariantRecognizerAE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>Variant Recognizer</name>
+    <description>From some String feature values, search for all occurrences in the whole DocumentAnnotation</description>
+    <version/>
+    <vendor/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>InputAnnotations</name>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>InputAnnotations</name>
+        <value>
+          <array>
+            <string>fr.univnantes.lina.uima.types.Person</string>
+            <string>fr.univnantes.lina.uima.types.Organization</string>
+            <string>fr.univnantes.lina.uima.types.Work</string>
+            <string>fr.univnantes.lina.uima.types.Event</string>
+            <string>fr.univnantes.lina.uima.types.Location</string>
+            <string>fr.univnantes.lina.uima.types.Date</string>
+            <string>fr.univnantes.lina.uima.types.Time</string>
+            <string>fr.univnantes.lina.uima.types.Amount</string>
+          </array>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription/>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

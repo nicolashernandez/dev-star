@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.mlnlp.metrics.scores.ClassificationScoresAE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>ClassificationScoresAE</name>
+    <description>Outcomes are labeled either as positive (p) or negative (n). 
+There are four possible outcomes from a binary classifier. 
+If the outcome from a prediction is p and the actual value is also p, then it is called a true positive (TP); 
+if the outcome from a prediction is p and the actual value is n then it is said to be a false positive (FP). 
+when both the prediction outcome and the actual value are n,  then it is said to be a true negative (TN) 
+when the prediction outcome is n while the actual value is p, then it is said to be a false negative (FN)  
+actual p prediction p true positive (TP)
+actual n prediction p false positive (FP) 
+actual n prediction n true negative (TN) 
+actual p prediction n false negative (FN)  
+
+
+Can be parameterized with various configurations
+
+#-----------------------------------------------------
+case (1)
+PositiveGoldSamplePath=PositiveGoldAnnotation
+NegativeGoldSamplePath=NegativeGoldAnnotation
+PositiveTestSamplePath=PositiveTestAnnotation
+NegativeTestSamplePath=NegativeTestAnnotation
+
+Positive value is given by the annotation type in the field PositiveGoldSamplePath
+
+#-----------------------------------------------------
+case (2)
+PositiveGoldSamplePath=GoldAnnotation:label=positive
+NegativeGoldSamplePath=
+PositiveTestSamplePath=TestAnnotation:label=positive
+NegativeTestSamplePath=
+
+The system will infer that GoldAnnotation with a label value which differs from positive will be a negative.
+Idem with TestAnnotation
+The positive value is given by the declaration of the value for the PositiveGoldSamplePath
+
+This lead to 
+PositiveGoldSamplePath=GoldAnnotation:label=positive
+NegativeGoldSamplePath=GoldAnnotation:label=
+PositiveTestSamplePath=TestAnnotation:label=positive
+NegativeTestSamplePath=TestAnnotation:label=
+
+
+
+#-----------------------------------------------------
+case (3)
+PositiveGoldSamplePath=GoldAnnotation:label
+NegativeGoldSamplePath=
+PositiveTestSamplePath=TestAnnotation:label
+NegativeTestSamplePath=
+
+No positive value specified 
+When there is a match TP++, no match</description>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>PositiveGoldSamplePath</name>
+        <description>Expect as value (1) an annotation type name or (2) the (fully) qualified name of a feature concatened with a value meaning "positive" separated by a '=' symbol.
+Example of (1) :
+common.types.ml.PositiveGoldAnnotation
+Example of (2) : 
+common.types.ml.GoldAnnotation:label=positive
+
+So the format is 
+annotationTypeName[:featureName[=featureValue]]
+Squared brackets point the optional parts.
+If the NegativeGoldSamplePath is left empty, then it will be infered from the PositiveGoldSamplePath (but a full description will be required). 
+The system will assume that NegativeGoldSamplePath have the same annotationTypeName; it will consider as negative all the  annotationTypeName annotations with a value which will differs from featureValue.
+
+featureValue should be a string</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>NegativeGoldSamplePath</name>
+        <description>Expect as value (1) an annotation type name or (2) the (fully) qualified name of a feature concatened with a value meaning "positive" separated by a '=' symbol.
+Example of (1) :
+common.types.ml.PositiveGoldAnnotation
+Example of (2) : 
+common.types.ml.GoldAnnotation:label=positive
+
+So the format is 
+annotationTypeName[:featureName[=featureValue]]
+Squared brackets point the optional parts.
+If the NegativeGoldSamplePath is left empty, then it will be infered from the PositiveGoldSamplePath (but a full description will be required). 
+The system will assume that NegativeGoldSamplePath have the same annotationTypeName; it will consider as negative all the  annotationTypeName annotations with a value which will differs from featureValue.
+
+featureValue should be a string</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>PositiveTestSamplePath</name>
+        <description>Expect as value (1) an annotation type name or (2) the (fully) qualified name of a feature concatened with a value meaning "positive" separated by a '=' symbol.
+Example of (1) :
+common.types.ml.PositiveGoldAnnotation
+Example of (2) : 
+common.types.ml.GoldAnnotation:label=positive
+
+So the format is 
+annotationTypeName[:featureName[=featureValue]]
+Squared brackets point the optional parts.
+If the NegativeGoldSamplePath is left empty, then it will be infered from the PositiveGoldSamplePath (but a full description will be required). 
+The system will assume that NegativeGoldSamplePath have the same annotationTypeName; it will consider as negative all the  annotationTypeName annotations with a value which will differs from featureValue.
+
+featureValue should be a string</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>NegativeTestSamplePath</name>
+        <description>Expect as value (1) an annotation type name or (2) the (fully) qualified name of a feature concatened with a value meaning "positive" separated by a '=' symbol.
+Example of (1) :
+common.types.ml.PositiveGoldAnnotation
+Example of (2) : 
+common.types.ml.GoldAnnotation:label=positive
+
+So the format is 
+annotationTypeName[:featureName[=featureValue]]
+Squared brackets point the optional parts.
+If the NegativeGoldSamplePath is left empty, then it will be infered from the PositiveGoldSamplePath (but a full description will be required). 
+The system will assume that NegativeGoldSamplePath have the same annotationTypeName; it will consider as negative all the  annotationTypeName annotations with a value which will differs from featureValue.
+
+featureValue should be a string</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings/>
+    <typeSystemDescription/>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <externalResourceDependencies>
+    <externalResourceDependency>
+      <key>ClassificationScoresRessourceKey</key>
+      <description/>
+      <interfaceName>fr.univnantes.lina.uima.common.resources.ClassificationScoresSharedResource_Interface</interfaceName>
+      <optional>false</optional>
+    </externalResourceDependency>
+  </externalResourceDependencies>
+  <resourceManagerConfiguration>
+    <externalResources>
+      <externalResource>
+        <name>String2IntegerMapClassificationScoresResource</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>common/resources/String2IntegerMapResource.tmp</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>fr.univnantes.lina.uima.common.resources.ClassificationScoresSharedResource</implementationName>
+      </externalResource>
+    </externalResources>
+    <externalResourceBindings>
+      <externalResourceBinding>
+        <key>ClassificationScoresRessourceKey</key>
+        <resourceName>String2IntegerMapClassificationScoresResource</resourceName>
+      </externalResourceBinding>
+    </externalResourceBindings>
+  </resourceManagerConfiguration>
+</analysisEngineDescription>

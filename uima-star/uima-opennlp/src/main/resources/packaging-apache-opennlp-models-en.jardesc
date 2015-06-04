@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="demo-apache-opennlp-uima/target/apache-opennlp-models-en-v120104.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/demo-apache-opennlp-uima/packaging-apache-opennlp-models-en.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/desc&lt;opennlp.en"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/src&lt;common.types.resource"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/src&lt;common.types.text"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/src&lt;org.apache.uima"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/src&lt;org.apache.uima.examples"/>
+        <file path="/demo-apache-opennlp-uima/.classpath"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/src&lt;common.types.rs"/>
+        <folder path="/demo-apache-opennlp-uima/conf"/>
+        <file path="/demo-apache-opennlp-uima/packaging-apache-opennlp-models-en.jardesc"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/src&lt;opennlp.uima"/>
+        <folder path="/demo-apache-opennlp-uima/.settings"/>
+        <folder path="/demo-apache-opennlp-uima/lib"/>
+        <file path="/demo-apache-opennlp-uima/TODO"/>
+        <file path="/demo-apache-opennlp-uima/.project"/>
+        <folder path="/demo-apache-opennlp-uima/metadata"/>
+        <folder path="/demo-apache-opennlp-uima/doc"/>
+        <file path="/demo-apache-opennlp-uima/README"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/src&lt;common.types.ne"/>
+        <javaElement handleIdentifier="=demo-apache-opennlp-uima/resources&lt;opennlp.models.en"/>
+    </selectedElements>
+</jardesc>

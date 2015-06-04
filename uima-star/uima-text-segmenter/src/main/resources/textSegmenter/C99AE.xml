@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.textSegmenter.C99.C99AE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>C99 AE</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>StopWordFile</name>
+        <description>Path to the stop word file. If empty no use ? Must be specified ?</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>RankingMaskSize</name>
+        <description>Size of ranking mask rank to smooth the similarity matrix of all the sentences (Apply hard ranking (replace pixel value with the proportion 
+ of neighbouring values its greater than) to matrix using a S x S mask). It is said &gt;=1 in the main method description and &gt;=3 in the segment* method description. Surely should be &gt;=3 to be effective.</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>NumberOfSegments</name>
+        <description>Number of segments (default automatic = -1)</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>TermFrequencyWeight</name>
+        <description>Compute sentence similarity taking into account of term frequency (actually the entropy based on the token occurrence probability over all the sentences)</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputView</name>
+        <description>CAS view to proceed. By default this view will be the `_InitialView`. If you do not now, then leaving it empty will probably be a good choice.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputSentenceAnnotation</name>
+        <description>Annotation type which corresponds to a sentence unit. By default `org.apache.uima.SentenceAnnotation`</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputWordAnnotation</name>
+        <description>Annotation type which corresponds to a word unit. By default will be `org.apache.uima.TokenAnnotation`.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputWordFeature</name>
+        <description>Corresponds to the word token feature to consider. Default is `coveredText` but can be set to `stem`.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputSegmentAnnotation</name>
+        <description>Annotation to create for each text segment detected. By default it is set to  `fr.univnantes.lina.uima.textSegmenter.types.SegmentAnnotation`.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>StopWordFile</name>
+        <value>
+          <string>resources/STOPWORD.list</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputSentenceAnnotation</name>
+        <value>
+          <string>org.apache.uima.SentenceAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputSegmentAnnotation</name>
+        <value>
+          <string>fr.univnantes.lina.uima.textSegmenter.types.C99SegmentAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>NumberOfSegments</name>
+        <value>
+          <integer>-1</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>RankingMaskSize</name>
+        <value>
+          <integer>11</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>TermFrequencyWeight</name>
+        <value>
+          <boolean>false</boolean>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputWordAnnotation</name>
+        <value>
+          <string>org.apache.uima.TokenAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputWordFeature</name>
+        <value>
+          <string>stem</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import name="textSegmenter.TextSegmenterTS"/>
+      </imports>
+      <types>
+        <typeDescription>
+          <name>fr.univnantes.lina.uima.textSegmenter.types.C99SegmentAnnotation</name>
+          <description>Default Segment annotation</description>
+          <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+      </types>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">fr.univnantes.lina.uima.textSegmenter.types.C99SegmentAnnotation</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

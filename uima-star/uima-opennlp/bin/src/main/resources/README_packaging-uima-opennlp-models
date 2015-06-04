@@ -1,0 +1,97 @@
+# 
+
+# Where are the most recent models 130528
+# -----------------------------------------------------------------------------
+see the workspace/data-processed/FrenchTreebank/models dir
+(uima is used to parse ftb format and export in opennlp input format (wstspl)
+
+# packaging 130528
+# -----------------------------------------------------------------------------
+# copier le pos model built dans resources/opennlp/models/fr en le renommant fr-pos.bin
+# informer dans le README de ressource la version du bin qui a été mv en 
+ mv opennlp-maxent-pos-ftb+-201303041205.bin fr-pos.bin
+# éditer et mettre à jour la declaration de la ressource dans desc/opennlp.fr/PosTaggerAE.xml # inutile si l'on conserve le nom
+
+SRCDIR=~/workspace/data-processed/FrenchTreebank/models/
+TGTDIR=~/workspace/uima-opennlp/resources/opennlp/models/fr/
+
+# ce que l'on a produit au 130528
+
+ls $SRCDIR/*opennlp*
+ftb120100-comm+sw+mwgu+pomwngu-tok-opennlpMaxent200iter.model
+ftb120100-comm+sw+mw-tok-opennlpMaxent200iter.model
+ftb120100-constit-utf8-oneFile-revised-partialExtended-sw+mw-chunkCoarse-opennlp.model
+ftb120100-constit-utf8-oneFile-revised-partialExtended-sw+mw-chunkFine-opennlp.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-cat-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-cat-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-cat-opennlpPerceptronSequence200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-ftb+-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-ftb+-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-ftb+-opennlpPerceptronSequence200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-gender-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-gender-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-gender-opennlpPerceptronSequence200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mood-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mood-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mood-opennlpPerceptronSequence200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mph-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mph-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mph-opennlpPerceptronSequence200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-number-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-number-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-number-opennlpPerceptronSequence200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-person-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-person-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-person-opennlpPerceptronSequence200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-subcat-opennlpMaxent200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-subcat-opennlpPerceptron200iter.model
+ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-subcat-opennlpPerceptronSequence200iter.model
+ftb120100-text-sent-opennlpMaxent200iter.model
+
+# ce que l'on veut 
+fr-sent.bin
+fr-token.bin
+fr-cat.bin
+fr-ftbp.bin
+fr-subcat.bin
+fr-mph.bin
+fr-mood.bin # comprend fr-tense.bin
+fr-gender.bin
+fr-number.bin
+fr-person.bin
+fr-chunk.bin                                         
+
+
+# ce que l'on avait au 130528
+
+fr-sent.bin
+fr-token.bin
+fr-pos.bin
+fr-lemma.bin
+fr-mph.bin           
+fr-chunk.bin                                         
+fr-ner-person.bin        
+fr-ner-organization.bin  
+fr-ner-location.bin  
+frenchTreebank-cmmndLn-fr-sent.bin   
+frenchTreebank-cmmndLn-fr-token.bin  
+frenchTreebank-cmmndLn-fr-mph.bin
+frenchTreebank-cmmndLn-fr-chunk.bin                  
+frenchTreebank-cmmndLn-fr-chunk-wiChunkFamilies.bin
+README
+
+# cp 
+cp $SRCDIR/ftb120100-text-sent-opennlpMaxent200iter.model $TGTDIR/fr-sent.bin
+cp $SRCDIR/ftb120100-comm+sw+mw-tok-opennlpMaxent200iter.model $TGTDIR/fr-token.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-cat-opennlpMaxent200iter.model $TGTDIR/fr-cat.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-ftb+-opennlpMaxent200iter.model $TGTDIR/fr-ftbp.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-subcat-opennlpMaxent200iter.model $TGTDIR/fr-subcat.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mph-opennlpMaxent200iter.model $TGTDIR/fr-mph.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-mood-opennlpMaxent200iter.model $TGTDIR/fr-mood.bin # comprend fr-tense.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-gender-opennlpMaxent200iter.model $TGTDIR/fr-gender.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-number-opennlpMaxent200iter.model $TGTDIR/fr-number.bin
+cp $SRCDIR/ftb120100-tagged-utf8-oneFile-revised-extended-sw+mw-person-opennlpMaxent200iter.model $TGTDIR/fr-person.bin
+cp $SRCDIR/ftb120100-constit-utf8-oneFile-revised-partialExtended-sw+mw-chunkFine-opennlp.model $TGTDIR/fr-chunk.bin    
+
+java.lang.IllegalArgumentException: opennlp.tools.util.InvalidFormatException: Model version 1.5.3-SNAPSHOT is a snapshot - snapshot models are not supported by this non-snapshot version (1.5.3) of OpenNLP!
+

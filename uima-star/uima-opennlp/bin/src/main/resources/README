@@ -1,0 +1,262 @@
+#!/bin/bash
+# Descriptif du contenu du projet
+#------------------------------------------------------------------------------
+DEPRECATED pour partie
+anciennement apache-opennlp-building-models-and-uima-packaging
+notamment ce qui est dans opennlpDemo qui se retrouve dans uima-connectors pour exporter du FTB 
+la partie tag/train uima-opennlp doit être valide
+
+desc/opennlp
+	descripteurs présents dans le projet opennlp-uima/descripteurs (moyennant correction e.g. )
+	
+desc/opennlpDemo
+	mes contributions
+
+desc/opennlpDemo/tokenizer
+	FrenchTreebank-XML2CAS-annotationMapper-OpenNLPTokenizerTrainer-AAE.xml
+		Produire via UIMA une modélisation à partir d'un fichier FrenchTreebank ou d'une concatenation XML de celui-ci 
+		(fonctionne sur au moins un fichier et ai attendu 20 minutes sans résultat pour le corpus complet) 
+
+	FrenchTreebank-XML2CAS-annotationMapper-CAS2WST-ViewWriter-AAE.xml
+		Produire les données d'entrée (un par fichier FrenchTreebank ou pour toute la concatenation XML de celui-ci) pour un entraînement via ligne de commande
+		(fonctionne avec le corpus pris comme ensemble de fichier ou concatenation) 
+
+	OpenNLPTokenizer-AAE.xml
+		Utiliser via UIMA une modélisation produite
+		
+desc/opennlpDemo/posTagger
+	FrenchTreebank-XML2CAS-annotationMapper-ViewRenamer-OpenNLPPosTaggerTrainer-AAE.xml
+		Produire via UIMA une modélisation à partir d'un fichier FrenchTreebank ou d'une concatenation XML de celui-ci
+		(fonctionne sur au moins un fichier et ai attendu 20 minutes sans résultat pour le corpus complet) 
+		
+	FrenchTreebank-XML2CAS-annotationMapper-CAS2OpenNLPPOSTagger-ViewWriter-AAE.xml
+		Produire les données d'entrée (un par fichier FrenchTreebank ou pour toute la concatenation XML de celui-ci) pour un entraînement via ligne de commande
+		(fonctionne) 
+	
+	OpenNLPPosTagger-AAE.xml
+		Utiliser via UIMA une modélisation produite
+
+desc/opennlpDemo/chunk
+	FrenchTreebank-XML2CAS-annotationMapper-ViewRenamer-ChunkerTagger-CAS2CSV-AAE.xml
+		Produire les données d entrée (un par fichier FrenchTreebank ou pour toute la concatenation XML de celui-ci) pour un entraînement via ligne de commande
+		(fonctionne avec le fichier concatenation ou seulement un fichier mais pas une série de fichiers)
+
+
+# train opennlp sentence splitter
+# ------------------------------------------------------------------
+
+# -- data preparation
+# nombre de lignes qui se terminent par un caractère alphanumérique + _
+less corpus-text-utf8/* | perl -ne  'if (/\w$/g) {print}' | wc
+   1293
+# exemples de phrases
+# publique des pays subsahariens a été annulée à hauteur de 5,9 milliards de dollars, tandis que l'aide au développement représentait 17,3
+# Toutefois la réalité du continent noir pas plus que son avenir ne sont enfermés dans ces chiffres au demeurant inquiétants. Car en Afrique, les
+# OUVRIERS ET EMPLOYES
+# 16,44% CGT 12,02% 12,10% CSL 2,45% 0,58% G10 2,25% _ FGSOA _ 0,05% CAT _
+# 1992 1987
+# possède des sauts de lignes séparateur des textes
+less corpus-text-utf8-oneFile/ftb120100-text-utf8 
+# possède aussi des sauts de lignes
+# on décide de travailler sur common car des phrases sur plusieurs lignes à recomposer...
+less corpus-text-utf8-oneFile/ftb120100-text-utf8  | perl -ne  'if (!/\w$/g) {chomp(); print "$_\n";}' | wc
+22246
+ less corpus-text-utf8-oneFile-comm/corpus-text-utf8-oneFile-comm   | perl -ne  'if (!/\w$/g) {chomp(); print "$_\n";}' | wc
+  19858 
+
+# nombre de lignes qui se terminent par un caractère alphanumérique + _ dans common
+less corpus-text-utf8-oneFile-comm/corpus-text-utf8-oneFile-comm  | perl -ne  'if (/\w$/g) {print}'
+# ne possède pas de saut de lignes
+# après avoir consulté common, on décide d'utiliser finalement le corpus dans son entier en filtrant les lignes qui terminent par alphanumérique + _
+# (semblent être des titres, des lignes avec phrases sur plusieurs lignes : risque surtout de parasiter l'entraînement)
+
+# -- opennlp sentence trainer
+# one sentence per line. 
+# An empty line indicates a document boundary. 
+
+# generate train data for sentence modeling
+cd /home/hernandez/workspace/data-processed/FrenchTreebank
+TRAINDATA=/tmp/train-sent.dat
+cat corpus-text-utf8-oneFile/ftb120100-text-utf8  | perl -ne  'if (!/\w$/g) {chomp(); print "$_\n";}' > $TRAINDATA
+
+# train and build model
+MODELFILE=models/ftb120100-text-sent-opennlpMaxent200iter.model
+opennlp SentenceDetectorTrainer -iterations 200 -model $MODELFILE -lang fr -data $TRAINDATA -encoding utf-8
+
+# cross evaluation 10 folds
+# Usage: opennlp SentenceDetectorCrossValidator[.namefinder|.ad|.conllx|.parse|.pos] [-factory factoryName] [-abbDict path] [-eosChars string] [-params paramsFile] [-iterations num] [-cutoff num] -lang language [-misclassified true|false] [-folds num] -data sampleData [-encoding charsetName]
+
+opennlp SentenceDetectorCrossValidator -iterations 200 -lang fr -data $TRAINDATA -encoding utf-8
+# -iterations 100
+Precision: 0.9449438202247191
+Recall: 0.9163390023212847
+F-Measure: 0.9304216070612569
+# -iterations 200
+Precision: 0.9460394833048988
+Recall: 0.9194182576152352
+F-Measure: 0.9325389198539304
+
+
+
+
+# train opennlp token splitter
+# ------------------------------------------------------------------
+# generate two models mw et gu
+
+# Consult LOG /media/ext4/workspace/13/tokenization-sentence-word
+
+
+# bin/to-opennlp-TokenizerTrainer-input.pl
+cd ~/workspace/13/tokenization-sentence-word
+
+# /tmp
+TMP=/tmp
+
+# From common sentences between text-tei and tagged
+COMMRAWTEXT=~/workspace/data-processed/FrenchTreebank/corpus-text-utf8-oneFile-comm/corpus-text-utf8-oneFile-comm
+# two train data : mw and gu
+SW_MW=~/workspace/data-processed/FrenchTreebank/corpus-tagged-utf8-comm+wi+raw-revised-extended-sw+mw-wstspl/corpus-tagged-utf8-comm+wi+raw-revised-extended-sw+mw-wstspl
+# SW_POMW=~/workspace/data-processed/FrenchTreebank/corpus-tagged-utf8-oneFile-revised-extended-wstspl-sw+pomw-comm-wi-raw/corpus-tagged-utf8-oneFile-revised-extended-wstspl-sw+pomw-comm-wi-raw.txt 
+SW_MWGU_POMWNGU=~/workspace/data-processed/FrenchTreebank/corpus-tagged-utf8-comm+wi+raw-revised-extended-sw+mwgu+pomwngu-wstspl/corpus-tagged-utf8-comm+wi+raw-revised-extended-sw+mwgu+pomwngu-wstspl
+
+RAWTEXT=/tmp/ftb.raw
+# cat $COMMRAWTEXT |  grep -v '^$' | tr '_' '-'   > $RAWTEXT
+cat $COMMRAWTEXT  > $RAWTEXT
+
+#-- MW faire tourner deux fois alternativement en commentant/décommentant les paires de lignes ci-dessous
+# prepare data
+REFTOK=$SW_MW
+REF=sw+mw
+
+TRAINDATA=$TMP/train-tok-$REF.dat
+perl bin/to-opennlp-TokenizerTrainer-input-seg.pl -r $RAWTEXT -s $REFTOK -o $TRAINDATA
+
+# train
+MODELFILE=~/workspace/data-processed/FrenchTreebank/models/ftb120100-comm+$REF-tok-opennlpMaxent200iter.model
+opennlp TokenizerTrainer -iterations 200  -model $MODELFILE  -lang fr -data $TRAINDATA -encoding UTF-8
+
+# cross validate
+opennlp TokenizerCrossValidator -iterations 200 -lang fr -data $TRAINDATA -encoding UTF-8
+
+Precision: 0.9950342552224485
+Recall: 0.9944762534979055
+F-Measure: 0.9947551761082846
+
+#-- GU faire tourner deux fois alternativement en commentant/décommentant les paires de lignes ci-dessous
+# prepare data
+REFTOK=$SW_MWGU_POMWNGU
+REF=sw+mwgu+pomwngu
+
+TRAINDATA=$TMP/train-tok-$REF.dat
+perl bin/to-opennlp-TokenizerTrainer-input-seg.pl -r $RAWTEXT -s $REFTOK -o $TRAINDATA
+
+# train
+MODELFILE=~/workspace/data-processed/FrenchTreebank/models/ftb120100-comm+$REF-tok-opennlpMaxent200iter.model
+opennlp TokenizerTrainer -iterations 200  -model $MODELFILE  -lang fr -data $TRAINDATA -encoding UTF-8
+
+# cross validate
+opennlp TokenizerCrossValidator -iterations 200 -lang fr -data $TRAINDATA -encoding UTF-8
+
+		
+# Preparing xml ftb data for training a pos model  
+# -----------------------------------------------------------------------------
+
+# we use uima for generating the data
+
+# the descriptors in desc/opennlpDemo.posTagger are out of date.
+# use the desc
+# uima-connectors/desc/connectors.corpus.P7T/P7TPlusTagged-XML2CAS-mapTo-sw+pomw-WST+SPL-ViewWriter.xml
+# to create an xmi and to generate in the same time a WST+SPL with the tag values you like
+
+# the desc uses 
+# P7T2sw+mw-commonTypes.xml which creates token annotations and set some features if some constraints are validated
+
+# you can 
+# edit and change the value of the TagFeature in the descriptor : with one of the feature 
+cat
+catP
+subCat
+lemma
+gender
+number
+mph
+mood
+person
+# an rerun the whole process
+# or use the desc to work from the xmi
+# P7TPlusTagged-XMI-WST+SPL-ViewWriter.xml
+requiert 10 Go de ram, eclipse 12 Go
+
+
+# cela prend 45 minutes pour produire le xmi
+# contre 3 à partir d'un xmi déjà créé
+#Warning: uima-shell may require the definition of the couple OutputAnnotation and OutputFeature but it is not necessary for uima-word-segmenter so we remove the test
+#Warning: uima-shell may require the definition of the couple OutputAnnotation and OutputFeature but it is not necessary for uima-word-segmenter so we remove the test
+#INFO: AnnotationMapperAE - Loading mapping rule file: mapper/rules/P7T2sw+mw-commonTypes.xml
+#Debug: ContextFile path>/media/ext4/workspace/uima-connectors/bin/mapper/rules/P7T2sw+mw-commonTypes.xml<
+#Warning: uima-shell may require the definition of the couple OutputAnnotation and OutputFeature but it is not necessary for uima-word-segmenter so we remove the test
+#Warning: uima-shell may require the definition of the couple OutputAnnotation and OutputFeature but it is not necessary for uima-word-segmenter so we remove the test
+#Info: fr.univnantes.lina.uima.connectors.xml.XML2CASAE starts at 2013-04-26 12:26:20
+#Warning: fr.univnantes.lina.uima.connectors.xml.XML2CASAE outputType.equalsIgnoreCase(OUTPUTTYPE_VIEW) && atLeastOneInputViewIsEqualToOutputView ; The process may work, if it s not the case you may search why because of this warning
+#Info: fr.univnantes.lina.uima.connectors.xml.XML2CASAE ends at 2013-04-26 12:29:05 after 164116 milliseconds
+#Info: fr.univnantes.lina.uima.mapper.annotation.AnnotationMapperAE starts at 2013-04-26 12:29:05
+#Warning: fr.univnantes.lina.uima.mapper.annotation.AnnotationMapperAE outputType.equalsIgnoreCase(OUTPUTTYPE_VIEW) && atLeastOneInputViewIsEqualToOutputView ; The process may work, if it s not the case you may search why because of this warning
+#Info: fr.univnantes.lina.uima.mapper.annotation.AnnotationMapperAE ends at 2013-04-26 12:38:18 after 553055 milliseconds
+#Info: fr.univnantes.lina.uima.connectors.wstspl.CAS2WSTSPLAE starts at 2013-04-26 12:38:18
+#Info: fr.univnantes.lina.uima.connectors.wstspl.CAS2WSTSPLAE ends at 2013-04-26 13:08:50 after 1832302 milliseconds
+#Info: fr.univnantes.lina.uima.connectors.io.ViewWriterAE starts at 2013-04-26 13:08:50
+#Warning: fr.univnantes.lina.uima.connectors.io.ViewWriterAE outputType.equalsIgnoreCase(OUTPUTTYPE_VIEW) && atLeastOneInputViewIsEqualToOutputView ; The process may work, if it s not the case you may search why because of this warning
+#Info: fr.univnantes.lina.uima.connectors.io.ViewWriterAE ends at 2013-04-26 13:08:50 after 40 milliseconds
+#INFO: fr.univnantes.lina.uima.common.ae.NullProcessAE starts and ends at 2013-04-26 13:08:50
+
+
+
+# Preparing data in wst spl format for training a pos model  
+# -----------------------------------------------------------------------------
+
+# http://opennlp.apache.org/documentation/1.5.2-incubating/manual/opennlp.html#tools.postagger.training.tool
+# Each sentence must be in one line. The token/tag pairs are combined with "_". The token/tag pairs are whitespace separated. The data format does not define a document boundary. If a document boundary should be included in the training material it is suggested to use an empty line.
+
+# C'est le format actuel de 
+less /media/MyPassport/workspace/data-processed/FrenchTreebank/corpus-tagged-utf8-oneFile-revised-extended-openNLPFtb+/ftb120100-tagged-utf8-revised-extended-opennlpFtb+ 
+# le 3/3/13 sw+pomwngu+mwgu avec correction via sed de "_-_"
+# le 26/4/13 CASTOWSTSPL has a parameter to specify substitutions to perform
+
+
+# building opennlp pos tagger model from ftb+ by command line
+# -----------------------------------------------------------------------------
+export OPENNLP_HOME=/media/MyPassport/workspace/UIMA-USER-DEV-ENV/applications/apache-opennlp
+export PATH=$OPENNLP_HOME/bin:$PATH
+
+TRAINDATA=/media/MyPassport/workspace/data-processed/FrenchTreebank/corpus-tagged-utf8-oneFile-revised-extended-openNLPFtb+/ftb120100-tagged-utf8-revised-extended-opennlpFtb+ 
+DATE=`date +%Y%m%d%H%M`
+DATASRC=ftb+ # langue 
+ANALYSIS=pos
+MODEL=opennlp-maxent
+MODELFILE=built/models/$MODEL-$ANALYSIS-$DATASRC-$DATE.bin
+#fr-pos-maxent-train.bin
+
+opennlp  POSTaggerTrainer -encoding UTF-8 -lang fr -type maxent -data  $TRAINDATA  -model $MODELFILE
+
+
+#-- évaluation sur ftb via validation croisée 
+
+
+#-- évaluation sur sequoia comme corpus de test
+TESTDATA=/media/MyPassport/workspace/data-processed/sequoia/corpus-oneFile-opennlpFTB+-via-conll/sequoia-oneFile-opennlpFTB+-via-conll
+#/media/MyPassport/workspace/data-processed/sequoia/corpus-oneFile-xml-revised-extended-opennlpFTB+/sequoia-oneFile-xml-revised-extended-opennlpFTB+
+opennlp POSTaggerEvaluator -lang fr -encoding UTF-8  -model $MODELFILE -data $TESTDATA -misclassified true
+# Accuracy: 0.9384586498743465
+
+# building a lemma tagger
+# -----------------------------------------------------------------------------
+# took 24h 100 iter
+# does not work
+100:  ... loglikelihood=-17327.77918523364	0.9968095261593332
+Writing pos tagger model ... failed
+Error during writing model file '/tmp/model-lemma.bin'
+encoded string too long: 153687 bytes
+java.io.UTFDataFormatException: encoded string too long: 153687 bytes
+
+
+

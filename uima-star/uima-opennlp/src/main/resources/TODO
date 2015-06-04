@@ -1,0 +1,5 @@
+  * rename desc/opennlp.fr en AE
+  * rename opennlpDemo.* -> opennlpTrainer.*
+
+  * /demo-apache-opennlp-uima/target/apache-opennlp-models-fr-v120104.jar
+  * fusionner répertoire actuel

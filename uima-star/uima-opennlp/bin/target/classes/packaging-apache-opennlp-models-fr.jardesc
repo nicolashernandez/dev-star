@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="apache-opennlp-building-models-and-uima-packaging/apache-opennlp-models-fr-v130304.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/apache-opennlp-building-models-and-uima-packaging/packaging-apache-opennlp-models-fr.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=apache-opennlp-building-models-and-uima-packaging/src&lt;org.apache.uima.examples"/>
+        <javaElement handleIdentifier="=apache-opennlp-building-models-and-uima-packaging/src&lt;org.apache.uima"/>
+        <javaElement handleIdentifier="=apache-opennlp-building-models-and-uima-packaging/desc&lt;opennlp"/>
+        <javaElement handleIdentifier="=apache-opennlp-building-models-and-uima-packaging/resources&lt;opennlp.models.fr"/>
+        <javaElement handleIdentifier="=apache-opennlp-building-models-and-uima-packaging/desc&lt;opennlp.fr"/>
+        <javaElement handleIdentifier="=apache-opennlp-building-models-and-uima-packaging/desc&lt;opennlpDemo.typeSystem"/>
+        <javaElement handleIdentifier="=apache-opennlp-building-models-and-uima-packaging/src&lt;opennlp.uima"/>
+    </selectedElements>
+</jardesc>

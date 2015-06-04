@@ -67,7 +67,19 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 
-
+/**
+ * Part of the UIMA Utilities dedicated to handle
+ * <p>
+ * <ul>
+ * <li>jcas</li>
+ * <li>sofas </li>
+ * <li>and views</li>
+ * </ul>
+ * </p>
+ * 
+ * @author hernandez
+ *
+ */
 public class JCasUtils
 {
 /*  56 */   private static String DEFAULT_SOURCE_DOCUMENT_INFORMATION_ANNOTATION = "org.apache.uima.examples.SourceDocumentInformation";
@@ -87,7 +99,13 @@ public class JCasUtils
 
 
 
-
+/**
+ * Return the view of a jcas corresponding to the given view name
+ * @param aJCas
+ * @param viewNameString string
+ * @return viewJCas
+ * @throws AnalysisEngineProcessException
+ */
   public static JCas getView(JCas aJCas, String viewNameString)
     throws AnalysisEngineProcessException
   {
@@ -115,7 +133,17 @@ public class JCasUtils
 
 
 
+	/**
+	 * This method create a view.
+	 * 
+	 * @param aJCas
+	 *            the CAS over which the process is performed
+	 * @param outputViewString
+	 * @param sofaDataString
+	 * @param sofaDataStringTypeMimeString
 
+	 * @throws AnalysisEngineProcessException 
+	 */
   public static void createView(JCas aJCas, String outputViewString, String sofaDataString, String sofaDataStringTypeMimeString)
     throws AnalysisEngineProcessException
   {
@@ -143,7 +171,13 @@ public class JCasUtils
 
 
 
-
+	/**
+	 * Get the type of a given annotation name and check if it exists
+	 * @param aJCas
+	 * @param annotationString
+	 * @return annotationType
+	 * @throws AnalysisEngineProcessException
+	 */
   public static Type getJCasType(JCas aJCas, String annotationString)
     throws AnalysisEngineProcessException
   {
@@ -164,7 +198,12 @@ public class JCasUtils
 
 
 
-
+	/**
+	 * Return the sofaDataString of a JCAS corresponding to the given view 
+	 * @param aJCas
+	 * @return inputSofaDataString
+	 * @throws AnalysisEngineProcessException
+	 */
   public static String getSofaDataString(JCas aJCas)
     throws AnalysisEngineProcessException
   {
@@ -184,7 +223,13 @@ public class JCasUtils
 
 
 
-
+	/**
+	 * Get the name part of the uri stored in the source documentation of the annotation index of the current view
+	 * @param aJCas
+	 * @return
+	 * @throws CASRuntimeException
+	 * @throws AnalysisEngineProcessException
+	 */
   public static String getArtifactViewName(JCas aJCas)
     throws CASRuntimeException, AnalysisEngineProcessException
   {
@@ -216,7 +261,13 @@ public class JCasUtils
 
 
 
-
+  /**
+	 * This designation may be clearer than getArtifactName
+	 * @param aJCas
+	 * @return
+	 * @throws AnalysisEngineProcessException 
+	 * @throws CASRuntimeException 
+	 */
   public String getDocumentName(JCas aJCas)
     throws CASRuntimeException, AnalysisEngineProcessException
   {
@@ -227,7 +278,13 @@ public class JCasUtils
 
 
 
-
+	/**
+	 * Get the name of the artifact whatever it appears in any annotation index of associated view
+	 * @param aJCas
+	 * @return
+	 * @throws AnalysisEngineProcessException 
+	 * @throws CASRuntimeException 
+	 */
   public static String getTheArtifactName(JCas aJCas)
     throws CASRuntimeException, AnalysisEngineProcessException
   {
@@ -258,7 +315,14 @@ public class JCasUtils
 
 
 
-
+	/**
+	 * Get the name of the artifact whatever it appears in any annotation index of associated view
+	 * or create one specifying default prefix and suffix elements
+	 * @param aJCas
+	 * @return
+	 * @throws AnalysisEngineProcessException 
+	 * @throws CASRuntimeException 
+	 */
   public static String getAnArtifactName(JCas aJCas)
     throws CASRuntimeException, AnalysisEngineProcessException
   {
@@ -271,7 +335,14 @@ public class JCasUtils
 
 
 
-
+	/**
+	 * Get the name of the artifact whatever it appears in any annotation index of associated view
+	 * or create one specifying prefix and suffix elements
+	 * @param aJCas
+	 * @return
+	 * @throws AnalysisEngineProcessException 
+	 * @throws CASRuntimeException 
+	 */
   public static String getAnArtifactName(JCas aJCas, Boolean removeExtension, String prefix, String suffix)
     throws CASRuntimeException, AnalysisEngineProcessException
   {
@@ -303,7 +374,7 @@ public class JCasUtils
 
 
 
-/* 289 */       artifactName = System.nanoTime() + '-' + hash;
+/* 289 */       artifactName = "" + System.nanoTime() + '-' + hash;
     }
     
 

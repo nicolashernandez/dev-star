@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="Tokenizer">
+      <import name="opennlp.Tokenizer"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="PosTagger">
+      <import name="opennlp.PosTagger"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="Chunker">
+      <import name="opennlp.Chunker"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="LocationFinder">
+      <import name="opennlp.LocationNameFinder"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="DateFinder">
+      <import name="opennlp.DateNameFinder"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="MoneyFinder">
+      <import name="opennlp.MoneyNameFinder"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="SentenceDetector">
+      <import name="opennlp.SentenceDetector"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="PercentageFinder">
+      <import name="opennlp.PercentageNameFinder"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="TimeFinder">
+      <import name="opennlp.TimeNameFinder"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="PersonFinder">
+      <import name="opennlp.PersonNameFinder"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="OrganizationFinder">
+      <import name="opennlp.OrganizationNameFinder"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>OpenNlpTextAnalyzer</name>
+    <description/>
+    <version>1.4.4</version>
+    <vendor>OpenNlp</vendor>
+    <configurationParameters searchStrategy="language_fallback"/>
+    <configurationParameterSettings/>
+    <flowConstraints>
+      <fixedFlow>
+        <node>SentenceDetector</node>
+        <node>Tokenizer</node>
+        <node>PosTagger</node>
+        <node>Chunker</node>
+      </fixedFlow>
+    </flowConstraints>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">opennlp.uima.Token</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Time</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Sentence</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Person</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Percentage</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Organization</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Money</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Location</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Date</type>
+          <type allAnnotatorFeatures="true">opennlp.uima.Chunk</type>
+        </outputs>
+        <languagesSupported>
+          <language>fr</language>
+        </languagesSupported>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration>
+    <externalResources>
+      <externalResource>
+        <name>SentenceModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/french/fr-sent/fr-sent.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.sentdetect.SentenceModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>TokenModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/french/fr-token/fr-token.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.tokenize.TokenizerModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>PersonModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/english/en-ner-person.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>PercentageModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/english/en-ner-percentage.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>OrganizationModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/english/en-ner-organization.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>MoneyModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/english/en-ner-money.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>DateModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/english/en-ner-date.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>LocationModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/english/en-ner-location.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>TimeModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/english/en-ner-time.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>PosModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/french/fr-pos/fr-pos.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.postag.POSModelResourceImpl</implementationName>
+      </externalResource>
+      <externalResource>
+        <name>ChunkerModel</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:models/french/fr-chunk/fr-chunk.bin</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>opennlp.uima.chunker.ChunkerModelResourceImpl</implementationName>
+      </externalResource>
+    </externalResources>
+    <externalResourceBindings>
+      <externalResourceBinding>
+        <key>SentenceDetector/opennlp.uima.ModelName</key>
+        <resourceName>SentenceModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>Tokenizer/opennlp.uima.ModelName</key>
+        <resourceName>TokenModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>PersonFinder/opennlp.uima.ModelName</key>
+        <resourceName>PersonModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>PercentageFinder/opennlp.uima.ModelName</key>
+        <resourceName>PercentageModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>OrganizationFinder/opennlp.uima.ModelName</key>
+        <resourceName>OrganizationModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>MoneyFinder/opennlp.uima.ModelName</key>
+        <resourceName>MoneyModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>DateFinder/opennlp.uima.ModelName</key>
+        <resourceName>DateModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>LocationFinder/opennlp.uima.ModelName</key>
+        <resourceName>LocationModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>TimeFinder/opennlp.uima.ModelName</key>
+        <resourceName>TimeModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>PosTagger/opennlp.uima.ModelName</key>
+        <resourceName>PosModel</resourceName>
+      </externalResourceBinding>
+      <externalResourceBinding>
+        <key>Chunker/opennlp.uima.ModelName</key>
+        <resourceName>ChunkerModel</resourceName>
+      </externalResourceBinding>
+    </externalResourceBindings>
+  </resourceManagerConfiguration>
+</analysisEngineDescription>

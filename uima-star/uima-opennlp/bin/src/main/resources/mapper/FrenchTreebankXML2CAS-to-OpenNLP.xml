@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		* Licensed to the Apache Software Foundation (ASF) under one * or more
+		contributor license agreements. See the NOTICE file * distributed with
+		this work for additional information * regarding copyright ownership.
+		The ASF licenses this file * to you under the Apache License, Version
+		2.0 (the * "License"); you may not use this file except in compliance
+		* with the License. You may obtain a copy of the License at * *
+		http://www.apache.org/licenses/LICENSE-2.0 * * Unless required by
+		applicable law or agreed to in writing, * software distributed under
+		the License is distributed on an * "AS IS" BASIS, WITHOUT WARRANTIES
+		OR CONDITIONS OF ANY * KIND, either express or implied. See the
+		License for the * specific language governing permissions and
+		limitations * under the License.
+	-->
+<rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.lina.univ-nantes.fr/uima/annotationmapper"
+	xsi:schemaLocation="annotationMapperRules.xsd">
+	
+ 	
+	<rule id="XMLElementAnnotation2OpenNLPSentence" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='SENT']</constraint>
+				<create type="opennlp.uima.Sentence" >
+				
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+	
+
+	
+	<rule id="XMLAttributeAnnotation2OpenNLPToken" 
+		description="In the orginal French Treebank format, how to select all the w element  which are word simple or part of compound but a compound ">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLAttributeAnnotation">
+				<constraint>.[(@elementName='w')  and ((@attributeName='cat') or (@attributeName='catint'))  and not(contains(@coveredText,' '))]</constraint>
+				<create type="opennlp.uima.Token" >
+						<setFeature name="pos" value="./@attributeValue"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+
+	
+	
+	<rule id="NPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='NP']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('NP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+	
+	
+	<rule id="VPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='VN']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('VP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+	
+	<rule id="PPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='PP']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('PP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+	
+		<rule id="AdjPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='AP']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('AdjP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+	
+  	<rule id="AdvPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='AdP']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('AdvP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+
+  	<rule id="AdvPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='AdP']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('AdvP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+	
+	  	<rule id="VPinfPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='VPinf']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('VP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+
+	<rule id="VPpartPChunk" 
+		description="">
+		<pattern>
+			<patternElement type="fr.univnantes.lina.uima.connectors.types.XMLElementAnnotation">
+				<constraint>.[@elementName='VPpart']</constraint>
+				<create type="opennlp.uima.Chunk" >
+						<setFeature name="chunkType" value="normalize-space('VP')"/>
+				</create>
+			</patternElement>
+		</pattern>
+	</rule>
+
+</rules>
+
+

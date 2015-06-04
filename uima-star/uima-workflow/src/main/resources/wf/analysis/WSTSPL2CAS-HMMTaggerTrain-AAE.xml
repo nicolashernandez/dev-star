@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="importTS-AE">
+      <import name="common.types.importTS-AE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="HmmModelTrainer">
+      <import name="HmmModelTrainer"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="WSTSPL2CASAE">
+      <import name="connectors.wstspl.WSTSPL2CASAE"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>WSTSPL2CAS-HMMTaggerTrain-AAE</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters searchStrategy="language_fallback">
+      <configurationParameter>
+        <name>SentenceType</name>
+        <description>Type name of the Sentence annotations to turn into sentences separated by a newline character. Optional, by default &lt;code&gt;org.apache.uima.SentenceAnnotation&lt;/code&gt;</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/SentenceType</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>WordType</name>
+        <description>Type name of the Word annotations to turn into word separated by a whitespace character. Optional, by default &lt;code&gt;org.apache.uima.TokenAnnotation&lt;/code&gt;</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/WordType</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>CreateSentences</name>
+        <description>The default value is true.</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/CreateSentences</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>CreateWords</name>
+        <description>Default value is true.</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/CreateWords</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>WordTagFeature</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/WordTagFeature</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>WordTagSeparator</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/WordTagSeparator</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>WordSeparator</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/WordSeparator</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>FeaturePathPOS</name>
+        <description>Feature path to the value of the POS to be learnt. The annotation should exactly cover a "word".</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>HmmModelTrainer/FeaturePathPOS</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ModelExportFile</name>
+        <description>The path where the model will be written.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>HmmModelTrainer/ModelExportFile</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>SentenceType</name>
+        <value>
+          <string>common.types.text.Sentence</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>WordType</name>
+        <value>
+          <string>common.types.text.Token</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>WordTagFeature</name>
+        <value>
+          <string>cat</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>CreateWords</name>
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>CreateSentences</name>
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>WordTagSeparator</name>
+        <value>
+          <string>_</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>WordSeparator</name>
+        <value>
+          <string>" "</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>FeaturePathPOS</name>
+        <value>
+          <string>common.types.text.Token:cat</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>ModelExportFile</name>
+        <value>
+          <string>/tmp/uimahmmtagger.model</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+        <node>WSTSPL2CASAE</node>
+        <node>importTS-AE</node>
+        <node>HmmModelTrainer</node>
+      </fixedFlow>
+    </flowConstraints>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">common.types.text.Token</type>
+          <type allAnnotatorFeatures="true">common.types.text.Sentence</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

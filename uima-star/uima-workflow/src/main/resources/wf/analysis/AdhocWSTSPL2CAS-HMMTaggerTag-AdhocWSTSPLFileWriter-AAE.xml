@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="importTS-AE">
+      <import name="common.types.importTS-AE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="WSTSPLFileWriterAE">
+      <import name="connectors.wstspl.AdhocWSTSPLFileWriterAE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="WSTSPL2CASAE">
+      <import name="connectors.wstspl.AdhocWSTSPL2CASAE"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="HmmTagger">
+      <import name="HmmTagger"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>WSTSPL2CAS-HMMTaggerTrain-AAE</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters searchStrategy="language_fallback">
+      <configurationParameter>
+        <name>SentenceType</name>
+        <description>Type name of the Sentence annotations to turn into sentences separated by a newline character. Optional, by default &lt;code&gt;org.apache.uima.SentenceAnnotation&lt;/code&gt;</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/SentenceType</parameter>
+          <parameter>HmmTagger/SentenceType</parameter>
+          <parameter>WSTSPLFileWriterAE/SentenceType</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>WordType</name>
+        <description>Type name of the Word annotations to turn into word separated by a whitespace character. Optional, by default &lt;code&gt;org.apache.uima.TokenAnnotation&lt;/code&gt;</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/WordType</parameter>
+          <parameter>WSTSPLFileWriterAE/WordType</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>CreateSentences</name>
+        <description>The default value is true.</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/CreateSentences</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>CreateWords</name>
+        <description>Default value is true.</description>
+        <type>Boolean</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPL2CASAE/CreateWords</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>TokenFeaturePath</name>
+        <description>Token feature path to set. It should be like "type.name:attribute" (set by default to "org.apache.uima.TokenAnnotation:posTag")</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>HmmTagger/TokenFeaturePath</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>ModelFile</name>
+        <description>If the resource model file is not set, this parameter can be used. If both are empty, the system will throw an exception.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>HmmTagger/ModelFile</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>TagFeature</name>
+        <description>name of the Word feature where the POS value is stored. Optional, by default &lt;code&gt;tokenType&lt;/code&gt;
+If this value is empty, then it will take the value null (and not of the word form).</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPLFileWriterAE/TagFeature</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputFileSuffix</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+        <overrides>
+          <parameter>WSTSPLFileWriterAE/OutputFileSuffix</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputDirectory</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>WSTSPLFileWriterAE/OutputDirectory</parameter>
+        </overrides>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputView</name>
+        <description>view to create with words and sentences in the WST format. Mandatory.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+        <overrides>
+          <parameter>WSTSPLFileWriterAE/OutputView</parameter>
+        </overrides>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>SentenceType</name>
+        <value>
+          <string>org.apache.uima.SentenceAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>WordType</name>
+        <value>
+          <string>org.apache.uima.TokenAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>CreateWords</name>
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>CreateSentences</name>
+        <value>
+          <boolean>true</boolean>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>ModelFile</name>
+        <value>
+          <string>/tmp/uimahmmtagger.model</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>TokenFeaturePath</name>
+        <value>
+          <string>org.apache.uima.TokenAnnotation:pos</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>TagFeature</name>
+        <value>
+          <string>pos</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputDirectory</name>
+        <value>
+          <string>/tmp/hmmtaggeroutput</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputView</name>
+        <value>
+          <string>_WSTSPLView</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <flowConstraints>
+      <fixedFlow>
+        <node>WSTSPL2CASAE</node>
+        <node>importTS-AE</node>
+        <node>HmmTagger</node>
+        <node>WSTSPLFileWriterAE</node>
+      </fixedFlow>
+    </flowConstraints>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">common.types.text.Token</type>
+          <type allAnnotatorFeatures="true">common.types.text.Sentence</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

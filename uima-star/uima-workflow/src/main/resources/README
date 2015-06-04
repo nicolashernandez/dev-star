@@ -1,0 +1,9 @@
+two motivations
+  - prebuilt components (opennlp, malt, hmmtagger, ...)
+  - workflow
+
+ae/wf/prebuilt
+
+.io
+.preprocessing
+.evaluation

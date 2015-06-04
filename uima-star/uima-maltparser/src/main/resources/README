@@ -1,0 +1,15 @@
+# Mise à jour du projet
+#------------------------------------------------------------------------------   
+ 
+  * récupérer la dernière version de maltparser : en particulier pour les .jar de malt et de ses dépendances présentes dans lib à placer dans le bon rep lib de demo-opennlpTagger-maltparser
+  * récupérer la dernière version de french model maltparser sur le site du maltparser et le placer dans resources/maltParser/models/fremalt-1.7.mco
+  * éditer les fichiers demo/wst-mapper-opennlpFtb+PosTagger-MaltParserFr-AAE.xml et desc/maltParser/maltParserAE.xml et mettre à jour le parametre ModelFileName pour qu'il pointe vers le fichier .mco
+  * train opennlp pos models (see apache-opennlp-building-models-and-uima-packaging)
+
+
+#------------------------------------------------------------------------------   
+
+le cleartk uima maltParser requiert en entrée la définition des types suivants
+org.cleartk.token.type.Sentence
+org.cleartk.token.type.Token: pos,lemma,stem
+org.cleartk.token.type.Subtoken: position  

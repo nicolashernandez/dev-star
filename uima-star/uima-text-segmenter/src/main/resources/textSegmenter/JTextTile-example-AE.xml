@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>fr.univnantes.lina.uima.textSegmenter.JTextTile.JTextTileAE</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>JTextTile AE</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>StopWordFile</name>
+        <description>Path to the stop word file. If empty no use ? Must be specified ?</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>WindowSize</name>
+        <description>Window size in number of words. Hearst suggested 30. Choi claimed  the same but its default value was 100 in its implementation. It depends on the number of words per sentence/proposition and also if we words with raw words, post tag filtered words, stems... and from the text genre...
+Set it to -1 if you want the program to determine automatically the "best" value. The computation is based on  simple homemade empirical heuristic which set the best value to 3 times the average size of a sentence in terms of words.</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>StepSize</name>
+        <description>Size of the step to shift the window. Hearst suggested 5. Choi claimed the same but its default value was 10 in its implementation. It depends on the number of words per sentence/proposition and also if we words with raw words, post tag filtered words, stems... and from the text genre...
+Set it to -1 if you want the program to determine automatically the "best" value. The computation is based on  simple homemade empirical heuristic which set the best value to 1 time the average size of a sentence in terms of words.</description>
+        <type>Integer</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputView</name>
+        <description>CAS view to proceed. By default this view will be the `_InitialView`. If you do not now, then leaving it empty will probably be a good choice.</description>
+        <type>String</type>
+        <multiValued>true</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputSentenceAnnotation</name>
+        <description>Annotation type which corresponds to a sentence unit. By default `org.apache.uima.SentenceAnnotation`</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputWordAnnotation</name>
+        <description>Annotation type which corresponds to a word unit. By default will be `org.apache.uima.TokenAnnotation`</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>InputWordFeature</name>
+        <description>Corresponds to the word token feature to consider. Default is `coveredText` but can be set to `stem`.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+      <configurationParameter>
+        <name>OutputSegmentAnnotation</name>
+        <description>Annotation to create for each text segment detected. By default it is set to  `fr.univnantes.lina.uima.textSegmenter.types.SegmentAnnotation`.</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>StopWordFile</name>
+        <value>
+          <string>resources/STOPWORD.list</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputSentenceAnnotation</name>
+        <value>
+          <string>org.apache.uima.SentenceAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>OutputSegmentAnnotation</name>
+        <value>
+          <string>fr.univnantes.lina.uima.textSegmenter.types.JTextTileSegmentAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputWordAnnotation</name>
+        <value>
+          <string>org.apache.uima.TokenAnnotation</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>InputWordFeature</name>
+        <value>
+          <string>stem</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>WindowSize</name>
+        <value>
+          <integer>-1</integer>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>StepSize</name>
+        <value>
+          <integer>-1</integer>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import name="textSegmenter.TextSegmenterTS"/>
+      </imports>
+      <types>
+        <typeDescription>
+          <name>fr.univnantes.lina.uima.textSegmenter.types.JTextTileSegmentAnnotation</name>
+          <description>Default Segment annotation</description>
+          <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+      </types>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">fr.univnantes.lina.uima.textSegmenter.types.JTextTileSegmentAnnotation</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

@@ -68,8 +68,7 @@ import org.apache.uima.UimaContext;
 
 public class ContextUtils
 {
-/*  54 */   private static final String PATH_SEPARATOR = System.getProperty("path.separator");
-  
+	/*  54 */   private static final String PATH_SEPARATOR = System.getProperty("path.separator");
 
 
 
@@ -86,137 +85,150 @@ public class ContextUtils
 
 
 
-  public static ContextFile resolveRelativeFilePath(Object currentClass, UimaContext context, String fileName)
-  {
-/*  74 */     ArrayList<File> datapathElements = getContextDataPaths(context);
-    
-    URL url;
-/*  77 */     if ((url = currentClass.getClass().getClassLoader().getResource(fileName)) != null)
-    {
+	/**
+	 * search the context to find a resource file 
+	 * return path and stream
+	 * can be used to resolve relative File Path 
+	 * 
+	 * @param currentClass
+	 * @param context
+	 * @param fileName
+	 * @return
+	 */
+	public static ContextFile resolveRelativeFilePath(Object currentClass, UimaContext context, String fileName)
+	{
+		/*  74 */     ArrayList<File> datapathElements = getContextDataPaths(context);
 
+		URL url;
+		/*  77 */     if ((url = currentClass.getClass().getClassLoader().getResource(fileName)) != null)
+		{
 
-/*  81 */       InputStream stream = currentClass.getClass().getClassLoader().getResourceAsStream(fileName);
-/*  82 */       ContextFile contextFile = new ContextFile(url.getFile(), stream, fileName);
-      
-/*  84 */       return contextFile;
-    }
-    
 
-/*  88 */     if ((datapathElements == null) || (datapathElements.size() == 0))
-    {
-/*  90 */       return null;
-    }
-    
-/*  93 */     for (int i = 0; i < datapathElements.size(); i++) {
-/*  94 */       File testFile = new File((File)datapathElements.get(i), fileName);
-/*  95 */       if (testFile.exists())
-      {
+			/*  81 */       InputStream stream = currentClass.getClass().getClassLoader().getResourceAsStream(fileName);
+			/*  82 */       ContextFile contextFile = new ContextFile(url.getFile(), stream, fileName);
 
-        try
-        {
-/* 100 */           stream = new BufferedInputStream(new FileInputStream(testFile));
-        } catch (FileNotFoundException ex) { InputStream stream;
-/* 102 */           return null; }
-        InputStream stream;
-/* 104 */         ContextFile contextFile = new ContextFile(testFile.getAbsolutePath(), stream, null);
-/* 105 */         return contextFile;
-      }
-    }
-    
+			/*  84 */       return contextFile;
+		}
 
-/* 110 */     return null;
-  }
-  
 
+		/*  88 */     if ((datapathElements == null) || (datapathElements.size() == 0))
+		{
+			/*  90 */       return null;
+		}
 
+		/*  93 */     for (int i = 0; i < datapathElements.size(); i++) {
+			/*  94 */       File testFile = new File((File)datapathElements.get(i), fileName);
+			/*  95 */       if (testFile.exists())
+			{
+				InputStream stream;
+				try
+				{
+					/* 100 */           stream = new BufferedInputStream(new FileInputStream(testFile));
+				} catch (FileNotFoundException ex) { 
+					/* 102 */           return null; }
+				/* 104 */         ContextFile contextFile = new ContextFile(testFile.getAbsolutePath(), stream, null);
+				/* 105 */         return contextFile;
+			}
+		}
 
 
+		/* 110 */     return null;
+	}
 
 
 
-  public static ArrayList<File> getContextDataPaths(UimaContext context)
-  {
-/* 122 */     StringTokenizer tokenizer = new StringTokenizer(context.getDataPath(), PATH_SEPARATOR);
-/* 123 */     ArrayList<File> datapathElements = new ArrayList();
-/* 124 */     while (tokenizer.hasMoreTokens())
-    {
-/* 126 */       datapathElements.add(new File(tokenizer.nextToken()));
-    }
-/* 128 */     return datapathElements;
-  }
-  
 
 
 
 
+	/**
+	 * Get the list of the datapaths present in the given context 
+	 * @param context
+	 * @return the list of the datapaths 
+	 */
+	public static ArrayList<File> getContextDataPaths(UimaContext context)
+	{
+		/* 122 */     StringTokenizer tokenizer = new StringTokenizer(context.getDataPath(), PATH_SEPARATOR);
+		/* 123 */     ArrayList<File> datapathElements = new ArrayList();
+		/* 124 */     while (tokenizer.hasMoreTokens())
+		{
+			/* 126 */       datapathElements.add(new File(tokenizer.nextToken()));
+		}
+		/* 128 */     return datapathElements;
+	}
 
 
 
 
-  public static class ContextFile
-  {
-/* 141 */     private String filePath = "";
-    
 
 
 
 
 
-    private InputStream stream;
-    
+	public static class ContextFile
+	{
+		/* 141 */     private String filePath = "";
 
 
 
 
-    private String fileName;
-    
 
 
+		private InputStream stream;
 
 
 
-    public ContextFile(String filePath, InputStream stream, String fileName)
-    {
-/* 163 */       System.err.println("INFO: ContextFile path>" + filePath + "<");
-/* 164 */       this.filePath = filePath;
-/* 165 */       this.stream = stream;
-/* 166 */       this.fileName = fileName;
-    }
-    
 
 
+		private String fileName;
 
 
-    public String getFilePath()
-    {
-/* 175 */       return this.filePath;
-    }
-    
 
 
 
 
-    public InputStream getStream()
-    {
-/* 184 */       return this.stream;
-    }
-    
+		public ContextFile(String filePath, InputStream stream, String fileName)
+		{
+			/* 163 */       System.err.println("INFO: ContextFile path>" + filePath + "<");
+			/* 164 */       this.filePath = filePath;
+			/* 165 */       this.stream = stream;
+			/* 166 */       this.fileName = fileName;
+		}
 
 
 
 
-    public String getFileName()
-    {
-/* 193 */       return this.fileName;
-    }
-    
 
+		public String getFilePath()
+		{
+			/* 175 */       return this.filePath;
+		}
 
 
 
-    public File getFile()
-    {
-/* 202 */       return new File(getFilePath());
-    }
-  }
+
+
+		public InputStream getStream()
+		{
+			/* 184 */       return this.stream;
+		}
+
+
+
+
+
+		public String getFileName()
+		{
+			/* 193 */       return this.fileName;
+		}
+
+
+
+
+
+		public File getFile()
+		{
+			/* 202 */       return new File(getFilePath());
+		}
+	}
 }

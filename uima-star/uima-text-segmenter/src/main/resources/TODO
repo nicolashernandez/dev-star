@@ -1,0 +1,39 @@
+# UIMA Text Segmenter
+# Copyright (C) 2011  Nicolas Hernandez
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+# 
+#   http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.  
+#
+# Fichier TODO
+# 2011-02-28  Nicolas Hernandez  <nicolas.hernandez@gmail.com>
+  
+  * Simplifier le constructeur de JTextTileParser en particulier 		this.rawText = rawText; et 	this.C = rawText; ; le second étant un sous ensemble du premier 
+  * Tester la robustesse si la liste des stopwords est vide, 
+  * Ajouter une liste de stopwords pour le francais
+  * Commentaires générales de toutes les classes, propriétés et méthodes les plus importantes
+  * Patch pour que C99Parser accepte  coveredText ; voir quelles méthodes de java Reflect permet qu'il soit accepté indifférement   
+  * Renommer OutputAnnotation en OutputSegmentAnnotation et Sentence/Token en InputSentence/TokenAnnotation puis créer un inputTokenFeatureAnnotation et retirer le outputFeature car If one of the parameter InputAnnotation or InputFeature is defined, both must be ! 
+		// at fr.univnantes.lina.uima.util.AnalysisEngine.initialize(AnalysisEngine.java:284)  
+  * Pourquoi dans C99WithSentenceWSTSnowball > themeSegment.setEnd(vect.get(index-1).getEnd()); l'index n'est pas le S[i].length ? 
+  * Commenter ou revoir les System.out en err avec Debug
+  * Nettoyer C99AE et C99Parser des codes inutiles mis en commentaires
+  * JTextTile preprocess prévoit de faire avec nom et verbe, que commenté mais qu'est dit donné de meilleurs résultats. En ce qui nous concerne il faudrait tester avec un type mots pleins... je ne sais pas si cela marcherait 
+  * dans le README dire que JTextTile utilise les val suivante au départ public class RawText implements Tokenised, Sentences {
+	/* Information from the source */
+	public Vector text = new Vector(300,50); // Source text
+	public Vector boundaries = new Vector(100,20); // Sentence boundaries
+   

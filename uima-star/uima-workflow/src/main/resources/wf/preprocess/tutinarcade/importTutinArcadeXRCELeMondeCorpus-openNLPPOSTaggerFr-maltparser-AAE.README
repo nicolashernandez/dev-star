@@ -1,0 +1,93 @@
+1. 
+Not needed for performing 2.
+Add Sofa, declare "Output" (created by this component) (input: created outisde of the component)
+        <outputSofas>
+          <sofaName>_textView</sofaName>
+        </outputSofas>
+2. 
+ <sofaMapping>
+      <componentKey>importTutinArcadeXRCELeMondeCorpus-AAE</componentKey>
+      <componentSofaName>_textView</componentSofaName>
+      <aggregateSofaName>_SharedView</aggregateSofaName>
+    </sofaMapping>
+
+    
+     <sofaMapping>
+      <componentKey>openNLPPOSTaggerFr-maltparser-AAE</componentKey>
+      <componentSofaName>_InitialView</componentSofaName>
+      <aggregateSofaName>_SharedView</aggregateSofaName>
+    </sofaMapping>
+    
+3. Copy of where we remove the sentence detection processing (already performed manually)
+Test: parsing a LocatedAnnotationIndex and displaying the current annotation at the current offset 
+Debug: offset>158 160< >common.types.text.LexicalUnit< 
+Debug: offset>663 671< >common.types.text.Chunk< >common.types.text.LexicalUnit< 
+Debug: offset>979 987< >common.types.text.Chunk< 
+Debug: offset>406 408< >common.types.text.LexicalUnit< 
+Debug: offset>935 996< >common.types.text.Sentence< 
+Debug: offset>1251 1252< >common.types.text.LexicalUnit< 
+Debug: offset>1234 1238< >common.types.text.LexicalUnit< 
+Debug: offset>463 464< >common.types.text.LexicalUnit< 
+Debug: offset>1321 1324< >common.types.text.LexicalUnit< 
+Debug: offset>846 848< >common.types.text.LexicalUnit< 
+Debug: offset>855 857< >common.types.text.LexicalUnit< 
+Debug: offset>1058 1069< >common.types.text.Chunk< 
+
+Test: parsing a sorted LocatedAnnotationIndex and displaying the current annotation at the current offset 
+Debug: offset>158 160< >common.types.text.LexicalUnit< 
+Debug: offset>663 671< >common.types.text.Chunk< >common.types.text.LexicalUnit< 
+Debug: offset>979 987< >common.types.text.Chunk< 
+Debug: offset>406 408< >common.types.text.LexicalUnit< 
+Debug: offset>935 996< >common.types.text.Sentence< 
+Debug: offset>1251 1252< >common.types.text.LexicalUnit< 
+Debug: offset>1234 1238< >common.types.text.LexicalUnit< 
+Debug: offset>463 464< >common.types.text.LexicalUnit< 
+Debug: offset>1321 1324< >common.types.text.LexicalUnit< 
+Debug: offset>846 848< >common.types.text.LexicalUnit< 
+Debug: offset>855 857< >common.types.text.LexicalUnit< 
+Debug: offset>1058 1069< >common.types.text.Chunk<  
+
+
+
+Test: parsing a LocatedAnnotationIndex and displaying the current annotation at the current offset 
+Debug: offsetKey>0<   begin>0< end>1709< >uima.tcas.DocumentAnnotation< 
+  begin>0< end>14< >common.types.text.Sentence< 
+  begin>0< end>6< >common.types.text.Chunk< 
+  begin>0< end>2< >common.types.text.LexicalUnit< 
+  begin>0< end>0< >org.apache.uima.examples.SourceDocumentInformation< 
+
+Debug: offsetKey>551<   begin>551< end>560< >common.types.text.Chunk< 
+  begin>551< end>560< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>3<   begin>3< end>6< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>1096<  begin>1096< end>1103< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>547<   begin>547< end>550< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>544<   begin>544< end>623< >common.types.text.Sentence< 
+  begin>544< end>550< >common.types.text.Chunk< 
+  begin>544< end>546< >common.types.text.LexicalUnit< 
+  
+  
+  
+  Test: parsing a sorted LocatedAnnotationIndex and displaying the current annotation at the current offset 
+Debug: offsetKey>0<   begin>0< end>1709< >uima.tcas.DocumentAnnotation< 
+  begin>0< end>14< >common.types.text.Sentence< 
+  begin>0< end>6< >common.types.text.Chunk< 
+  begin>0< end>2< >common.types.text.LexicalUnit< 
+  begin>0< end>0< >org.apache.uima.examples.SourceDocumentInformation< 
+
+Debug: offsetKey>551<   begin>551< end>560< >common.types.text.Chunk< 
+  begin>551< end>560< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>3<   begin>3< end>6< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>1096<  begin>1096< end>1103< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>547<   begin>547< end>550< >common.types.text.LexicalUnit< 
+
+Debug: offsetKey>544<   begin>544< end>623< >common.types.text.Sentence< 
+  begin>544< end>550< >common.types.text.Chunk< 
+  begin>544< end>546< >common.types.text.LexicalUnit< 
+  

@@ -1,12 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>fr.univnantes.lina.uima</groupId>
-    <artifactId>uima-star</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>uima-dictionary-annotator</artifactId>
-  	<name>uima-dictionary-annotator</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.univnantes.lina.uima</groupId>
+		<artifactId>uima-star</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>uima-dictionary-annotator</artifactId>
+	<name>uima-dictionary-annotator</name>
 
 	<description>Load dictionaries as uima resources and perform a recognition activity</description>
 	<url>https://github.com/nicolashernandez</url>
@@ -29,7 +30,9 @@
 		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
 		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
 	</scm>
-  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<dependencies>
 
 		<dependency>
@@ -37,7 +40,7 @@
 			<artifactId>java-ml-nlp</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>fr.univnantes.lina.uima</groupId>
 			<artifactId>uima-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

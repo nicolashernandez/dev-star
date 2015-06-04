@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>uima-connectors</artifactId>
- 	<name>uima-connectors</name>
+	<name>uima-connectors</name>
 
 	<description>Aims at ensuring the connectivity with various information system by developping generic and dedicated connectors</description>
 	<url>https://github.com/nicolashernandez</url>
@@ -30,8 +30,11 @@
 		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
 		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
 	</scm>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<dependencies>
-			<dependency>
+		<dependency>
 			<groupId>fr.univnantes.lina</groupId>
 			<artifactId>java-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

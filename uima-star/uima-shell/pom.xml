@@ -30,6 +30,9 @@
 		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
 		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
 	</scm>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<repositories>
 		<repository>
 			<id>m2localrepo</id>

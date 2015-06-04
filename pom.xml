@@ -27,6 +27,9 @@
 		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
 		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
 	</scm>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<modules>
 		<module>java-common</module>
 		<module>java-ml-nlp</module>
@@ -44,6 +47,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+
 		<pluginManagement>
 
 			<plugins>
@@ -58,6 +62,7 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+
 	</build>
 	<description>super project</description>
 </project>

@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>uima-common</artifactId>
-		<name>uima-common</name>
+	<name>uima-common</name>
 
 	<description>Definition of a common uima type system</description>
 	<url>https://github.com/nicolashernandez</url>
@@ -30,8 +30,9 @@
 		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
 		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
 	</scm>
-</project>
-
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<!-- gestion des lib forcer un mvn install à partir des lib présents dans 
 		le répertoire lib... http://matthieu-lux.developpez.com/tutoriels/java/maven/?page=dependances#L6.4 
 		executer le mvn install via un call ant de mvn... http://maven.apache.org/guides/mini/guide-using-ant.html -->

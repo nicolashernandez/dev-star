@@ -9,7 +9,7 @@
 	<groupId>fr.univnantes.lina.uima</groupId>
 	<artifactId>uima-star</artifactId>
 	<packaging>pom</packaging>
-	
+
 	<name>uima-common</name>
 
 	<description>Parent of various uima modules</description>
@@ -33,6 +33,9 @@
 		<developerConnection>nicolashernandez@github.com:nicolashernandez/dev-star.git</developerConnection>
 		<url>nicolashernandez@github.com:nicolashernandez/dev-star.git</url>
 	</scm>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<modules>
 		<module>uima-common</module>
 		<module>uima-ml-nlp</module>
@@ -92,14 +95,14 @@
 			mod which inherit do not have access to the mod of the pom... <dependency> 
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId> <artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId> 
 			<version>1.6.1</version> <type>pom</type> </dependency> -->
-			
-					<dependency>
+
+		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId>
 			<version>1.7.0</version>
 			<type>pom</type>
 		</dependency>
-			
+
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>
@@ -113,7 +116,7 @@
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.io.xmi-asl</artifactId>
 			<version>1.7.0</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.io.text-asl</artifactId>
 			<version>1.7.0</version>
@@ -124,21 +127,21 @@
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.parameter-asl</artifactId>
 			<version>1.7.0</version>
 		</dependency>
-	
-		
+
+
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.metadata-asl</artifactId>
 			<version>1.7.0</version>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.coref-asl</artifactId>
 			<version>1.7.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>
@@ -146,8 +149,8 @@
 			</artifactId>
 			<version>1.7.0</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>
@@ -155,16 +158,11 @@
 			</artifactId>
 			<version>1.7.0</version>
 		</dependency>
-		
-		
-		<!--  
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.examples-asl
-			</artifactId>
-			<version>1.5.0</version>
-		</dependency>-->
+
+
+		<!-- <dependency> <groupId>de.tudarmstadt.ukp.dkpro.core</groupId> <artifactId> 
+			de.tudarmstadt.ukp.dkpro.core.examples-asl </artifactId> <version>1.5.0</version> 
+			</dependency> -->
 		<dependency>
 			<groupId>fr.univnantes.lina</groupId>
 			<artifactId>java-common</artifactId>

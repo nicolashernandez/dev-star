@@ -110,7 +110,7 @@ public class CommonAE
 	/** Feature name of the annotations to consider as the token units to be
 	 processed and whose string value will be processed*/
   @ConfigurationParameter(name="InputFeature", mandatory=false, defaultValue={"coveredText"})
-  private String inputFeature;
+  protected String inputFeature;
   
 
 	/** View name to consider as the view to receive the result ;  to be
@@ -121,34 +121,34 @@ public class CommonAE
 
 
   @ConfigurationParameter(name="OutputView", mandatory=false, defaultValue={""})
-  private String outputView;
+  protected String outputView;
   
 	/** Type mime to consider for storing the result in the sofaDataString*/
   public static final String PARAM_OUTPUT_VIEW_TYPE_MIME = "OutputViewTypeMime";
   
 
   @ConfigurationParameter(name="OutputViewTypeMime", mandatory=false, defaultValue={"text/plain"})
-  private String outputViewTypeMime;
+  protected String outputViewTypeMime;
   
 	/** Type name of the annotations to create as the analysis result*/
   public static final String PARAM_OUTPUT_ANNOTATION_NAME = "OutputAnnotation";
   
 
   @ConfigurationParameter(name="OutputAnnotation", mandatory=false, defaultValue={""})
-  private String outputAnnotation;
+  protected String outputAnnotation;
   
 	/** Type name of the feature to create as the analysis result*/
   public static final String PARAM_OUTPUT_FEATURE_NAME = "OutputFeature";
   
 
   @ConfigurationParameter(name="OutputFeature", mandatory=false, defaultValue={""})
-  private String outputFeature;
+  protected String outputFeature;
   
 
 private static String INPUTTYPE_ANNOTATION = "annotation";
 private static String INPUTTYPE_VIEW = "view";
-private static String OUTPUTTYPE_ANNOTATION = "annotation";
-private static String OUTPUTTYPE_VIEW = "view";
+protected static String OUTPUTTYPE_ANNOTATION = "annotation";
+protected static String OUTPUTTYPE_VIEW = "view";
   
 
 

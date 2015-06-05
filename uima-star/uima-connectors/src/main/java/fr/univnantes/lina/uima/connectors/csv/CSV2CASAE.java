@@ -241,12 +241,12 @@ public class CSV2CASAE extends CommonAE {
 		if (colToAnnString != null) columnRankToAnnotate = Integer.parseInt(colToAnnString);
 
 		// to force CommonAE to get the outputViewJCas in its process method
-		if ( outputViewString != null) outputType = OUTPUTTYPE_ANNOTATION;
+		if ( outputView != null) outputType = OUTPUTTYPE_ANNOTATION;
 
 		// In order to force the use of an existing view which contains annotations to update
 		// we have to set the CommonAE outputAnnotationString variable with annotationToCreateString
 		// in practice do not check if a feature is set
-		outputAnnotationString = annotationToCreateString;
+		outputAnnotation = annotationToCreateString;
 
 		// Get the features name
 		String[] featuresFromColumnsStringArray =  (String[]) aContext.getConfigParameterValue(PARAM_FEATURES_TO_COLUMNS);

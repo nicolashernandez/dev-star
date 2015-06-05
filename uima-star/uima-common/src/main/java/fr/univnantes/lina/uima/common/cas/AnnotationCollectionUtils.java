@@ -40,46 +40,30 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * <p>
+ * Methods dealing with annotation collection handling such as 
+ * <ul>
+ * <li>removeDuplicateFSAnnotationFromCASIndex</li>
+ * <li> subiterator unsensitive to annotation priority within index</li>
+ * <ul>
+ * </p>
+ * 
+ * @author hernandez
+ */
 public class AnnotationCollectionUtils
 {
+
+	/**
+	 * retrieveAndCastAnAnnotation
+	 * 
+	 * TODO FAILED
+	 * 
+	 * @param annotationToLineFSIterator
+	 * @param annotationToLine
+	 * @return class Class<Annotation> inputAnnotationClass = 
+	 * @throws AnalysisEngineProcessException
+	 */
 	public static Class retrieveAndCastAnAnnotation(FSIterator annotationToLineFSIterator, Annotation annotationToLine)
 			throws AnalysisEngineProcessException
 			{
@@ -94,17 +78,18 @@ public class AnnotationCollectionUtils
 		/*  77 */     return inputAnnotationClass;
 			}
 
+	/**
+	 * Remove some subsumed annotations from a given type of subsuming annotation 
+	 * Somehow based on 
+	 * http://permalink.gmane.org/gmane.comp.apache.uima.general/3501
+	 * http://www.mail-archive.com/uima-user@incubator.apache.org/msg01645.html
+	 * http://uima.apache.org/downloads/releaseDocs/2.3.0-incubating/docs/api/org/apache/uima/jcas/JCas.html#removeFsFromIndexes(org.apache.uima.cas.FeatureStructure)
+	 * @param aJCas 
+	 * @param subsumingAnnotation
+	 * @param subsumedAnnotation
+	 * @param strictOffset
 
-
-
-
-
-
-
-
-
-
-
+	 */
 	public static void removeSubsumedAnnotation(JCas aJCas, String subsumingAnnotation, String subsumedAnnotation, boolean strictOffset)
 	{
 		/*  93 */     List<Annotation> annotationToRemoveList = new ArrayList();
@@ -138,18 +123,19 @@ public class AnnotationCollectionUtils
 	}
 
 
+	/**
+	 * Remove duplicate annotations at the same offsets
+	 * from the index
+	 *
+	 * Only based on testing the offset, may have distinct features values !
+	 * In case of duplicate, no guarantee about which one will be removed  
+	 * 
+	 * @param aJCas  the CAS which contains the FSindex       
 
-
-
-
-
-
-
-
-
-
-
-
+	 * @author hernandez
+	 * @throws AnalysisEngineProcessException 
+	 * 
+	 */
 	public static void removeDuplicateAnnotations(JCas aJCas)
 	{
 		/* 137 */     AnnotationIndex<Annotation> anAnnotationIndex = aJCas.getAnnotationIndex();
@@ -161,73 +147,56 @@ public class AnnotationCollectionUtils
 		}
 	}
 
+	/**
+	 * Remove duplicate and subsumed annotations of the given type name
+	 *
+	 * Only based on testing the offset, may have distinct features values !
+	 * In case of duplicate, no guarantee about which one will be removed  
+	 * 
+	 * @param aJCas  the CAS which contains the FSindex       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	 * @author hernandez
+	 * @throws AnalysisEngineProcessException 
+	 * 
+	 */
 	public static void removeDuplicateAndSubsumedAnnotations(JCas aJCas, String subsumingAnnotation)
 	{
 		/* 176 */     removeSubsumedAnnotation(aJCas, subsumingAnnotation, subsumingAnnotation, false);
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	/**
+	 * 
+	 * This method provides an iterator over typed annotations that either 
+	 * have an offset embedded in that of a given annotation in a document, 
+	 * or have the same offset as these annotation. 
+	 * 
+	 * @param aJCas  the document in which stand the source and
+	 *                                         target annotations
+	 * @param contextAnnotation  the source annotation under which target 
+	 *                                         annotations that have to be drawn out
+	 * @param inputAnnotationHashMap  a hashmap of  the types of the target annotations that have 
+	 *                                         to be drawn out from the document under 
+	 *                                         the source annotation
+	 * @param isStrict              the boolean that defines the offset matching,
+	 *                                         offsets strictly equal if isStrict is true, begin 
+	 *                                         offsets greater or equal and end offsets less 
+	 *                                         or equal otherwise.  	
+	 * @return                           the iterator over the type theType annotations 
+	 *                                          which stand under the annotation theAnnotation 
+	 *                                          in the document theDocument 
+	 *                                should include the context annotation itself...          
+	 * 
+	 * @author Fabien Poulard
+	 * @author Jérôme Rocheteau
+	 * @author hernandez
+	 * @throws AnalysisEngineProcessException 
+	 * 
+	 * TODO remove this method ; prefer FSIterator<Annotation> subiterator(JCas aJCas, Annotation contextAnnotation, Set<String> inputAnnotationSet,
+			boolean isStrict)
+	 * 
+	 * @license Apache 2.0
+	 */
 	public static FSIterator<Annotation> subiterator(JCas aJCas, Annotation contextAnnotation, HashMap<String, ?> inputAnnotationHashMap, boolean isStrict)
 			throws AnalysisEngineProcessException
 			{
@@ -235,38 +204,35 @@ public class AnnotationCollectionUtils
 				/* 217 */       isStrict);
 			}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	/**
+	 * 
+	 * This method provides an iterator over typed annotations that either 
+	 * have an offset embedded in that of a given annotation in a document, 
+	 * or have the same offset as these annotation. 
+	 * 
+	 * @param aJCas  the document in which stand the source and
+	 *                                         target annotations
+	 * @param contextAnnotation  the source annotation under which target 
+	 *                                         annotations that have to be drawn out
+	 * @param inputAnnotationSet  a hashmap of  the types of the target annotations that have 
+	 *                                         to be drawn out from the document under 
+	 *                                         the source annotation
+	 * @param isStrict              the boolean that defines the offset matching,
+	 *                                         offsets strictly equal if isStrict is true, begin 
+	 *                                         offsets greater or equal and end offsets less 
+	 *                                         or equal otherwise.  	
+	 * @return                           the iterator over the type theType annotations 
+	 *                                          which stand under the annotation theAnnotation 
+	 *                                          in the document theDocument 
+	 *                                should include the context annotation itself...          
+	 * 
+	 * @author Fabien Poulard
+	 * @author Jérôme Rocheteau
+	 * @author hernandez
+	 * @throws AnalysisEngineProcessException 
+	 * 
+	 * @license Apache 2.0
+	 */
 	public static FSIterator<Annotation> subiterator(JCas aJCas, Annotation contextAnnotation, Set<String> inputAnnotationSet, boolean isStrict)
 			throws AnalysisEngineProcessException
 			{
@@ -332,34 +298,34 @@ public class AnnotationCollectionUtils
 		/* 314 */     return filteredIterator;
 			}
 
+	/**
+	 * A simple Subiterator call
+	 * Depending on the index size, can be much much much faster than with the constraint approach !
+	 * 
+	 * Here an example to simulate a constraint (as a post processing)
+	 * The current Annotation is compared with another (the filter) 
+	 * FSIterator wordsAnnotationIterator = AnnotationCollectionUtils.subiterator(
+				inputViewJCas, aSentenceAnnotation);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			while (wordsAnnotationIterator.hasNext()) {
+				Annotation aWordAnnotation = (Annotation) wordsAnnotationIterator
+				.next();
+				//System.out.println("Debug: aWordAnnotation.getClass().getName() "+aWordAnnotation.getClass().getName()+" wordTypeName"+ wordTypeName);
+				if (aWordAnnotation.getClass().getName().equalsIgnoreCase(wordTypeName))  
+					if (! aWordAnnotation.getCoveredText().trim().equalsIgnoreCase("")) { 
+						//doTheRequiredProcessing;
+					}
+			}
+	 * 
+	 * 
+	 * Some discussions about it 
+	 * http://www.uima-fr.org/planet//index.php?post_id=4
+	 * http://jerome.rocheteau.free.fr/index/post/2011/03/10/Comment-r%C3%A9cup%C3%A9rer-les-annotations-entre-deux-annotations-donn%C3%A9es
+	 *
+	 * @param jcas
+	 * @param annotation
+	 * @return an index of annotations subsumed by the annotation given in parameter
+	 */
 	public static FSIterator<Annotation> subiterator(JCas aJCas, Annotation beginEndAnnotation)
 	{
 		/* 347 */     AnnotationIndex<Annotation> index = aJCas.getAnnotationIndex();
@@ -367,20 +333,18 @@ public class AnnotationCollectionUtils
 		/* 349 */     return index.subiterator(between);
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	/**
+	 * This method get an FeatureStructure Array of selected annotation types
+	 * Leave empty if all annotations should be considered
+	 * 
+	 * @param aJCas
+	 *            the CAS over which the process is performed
+	 * @param annotationHashMap
+	 * 			Map of annotations to filter in the JCas
+	 * @return ArrayList<FeatureStructure>
+	 * 			Filtered JCas with the selected annotation 
+	 * @throws AnalysisEngineProcessException 
+	 */
 	public static ArrayList<FeatureStructure> getAnnotationArray(JCas aJCas, HashMap<String, Integer> annotationHashMap)
 			throws AnalysisEngineProcessException
 			{
@@ -413,12 +377,12 @@ public class AnnotationCollectionUtils
 
 		/* 396 */     return result;
 			}
-
-
-
-
-
-
+	/**
+	 * List<? extends FeatureStructure> to FSArray
+	 * @param jCas
+	 * @param fsList
+	 * @return FSArray
+	 */
 	public static FSArray toFSArray(JCas jCas, List<? extends FeatureStructure> fsList)
 	{
 		/* 406 */     if (fsList == null) {

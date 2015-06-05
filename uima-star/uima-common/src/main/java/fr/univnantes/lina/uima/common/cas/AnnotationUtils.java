@@ -24,6 +24,7 @@ import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.Feature;
 import org.apache.uima.cas.Type;
@@ -725,6 +726,18 @@ public class AnnotationUtils
 	public static Type getType(JCas aJCas, String annotationTypeName)
 	{
 		/* 633 */     return aJCas.getTypeSystem().getType(annotationTypeName);
+	}
+	
+	
+	/**
+	 * Echo in the standard output (the console) the type 
+	 * and the covered text of the given annotation
+	 * @param anAnnotation
+	 */
+	public static void echo(Annotation anAnnotation) {
+		System.out.printf("type>%s<\t\tcoveredText>%s<\n", 
+				anAnnotation.getClass().getSimpleName(), 
+				anAnnotation.getCoveredText());
 	}
 }
 

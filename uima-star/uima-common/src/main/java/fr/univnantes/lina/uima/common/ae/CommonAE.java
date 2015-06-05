@@ -160,7 +160,7 @@ private static String OUTPUTTYPE_VIEW = "view";
 	 */
 private String outputFeatureString = null;
 private String inputType = "";
-private String outputType = "";
+protected String outputType = "";
   
 
 

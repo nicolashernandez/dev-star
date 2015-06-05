@@ -36,6 +36,7 @@ import org.apache.uima.cas.FSIterator;
 import org.apache.uima.cas.Type;
 import org.apache.uima.cas.TypeSystem;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.xml.sax.SAXException;
 
@@ -133,19 +134,20 @@ public class XML2CASAE extends CommonAE { //extends JCasAnnotator_ImplBase  { //
 	public void typeSystemInit(TypeSystem aTypeSystem) throws AnalysisEngineProcessException {
 		sourceDocInfoType = aTypeSystem.getType("org.apache.uima.examples.SourceDocumentInformation");
 	}
-
+	
 	/**
 	 * process each inputViewJCas, parse the xml and produce a plainTextView of it
 	 *
 	 */
-	//	@Override
-	protected String processInputView(JCas inputViewJCas,
-			FSIterator contextAnnotationsFSIter,
-			Set<String> inputAnnotationSet,
-			String inputFeatureString, JCas outputViewJCas,
-			String outputAnnotationString, String ouputFeatureString)
-	throws AnalysisEngineProcessException {
-		
+	@Override
+	public String processInputView(JCas inputViewJCas,
+			FSIterator<Annotation> contextAnnotationsFSIter,
+			Set<String> inputAnnotationSet, String inputFeatureString,
+			JCas outputViewJCas, String outputAnnotationString,
+			String ouputFeatureString) throws AnalysisEngineProcessException {
+	
+
+
 		//System.out.println("Debug: class>"+this.getClass().getName()+"< now>" + JavaUtilities.now());
 
 		
@@ -274,9 +276,14 @@ public class XML2CASAE extends CommonAE { //extends JCasAnnotator_ImplBase  { //
 		// Le plus simple est de lui retourner l'image d'elle même
 		return inputViewJCas.getSofaDataString();
 
+	
+	
+	
+		// TODO Auto-generated method stub
+	//	return super.processInputView(inputViewJCas, contextAnnotationsFSIter,
+	//			inputAnnotationSet, inputFeatureString, outputViewJCas,
+	//			outputAnnotationString, ouputFeatureString);
 	}
-
-
 
 }
 

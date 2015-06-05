@@ -77,7 +77,7 @@ public class CommonAE
 	/** View name list to consider as the views to process*/
   public static final String PARAM_INPUT_VIEW_NAME = "InputView";
   @ConfigurationParameter(name="InputView", mandatory=false, defaultValue={"_InitialView"})
-  private String[] inputViewStringArray;
+  protected String[] inputViewStringArray;
 
 
 	/**
@@ -599,6 +599,7 @@ this.contextAnnotationSet = new HashSet();
 /*  538 */     System.err.println("Info: " + getClass().getName() + " ends at " + DateUtilities.stringFormatADate(endDate) + " after " + DateUtilities.dateDiff(startDate, endDate) + " milliseconds");
   }
   
+  
 
 /**
 	 * From the given inputView, process sequentially each ContextAnnotation.
@@ -626,7 +627,13 @@ this.contextAnnotationSet = new HashSet();
 	 * 
 	 * @throws AnalysisEngineProcessException
 	 */
-  protected String processInputView(JCas inputViewJCas, FSIterator<Annotation> contextAnnotationsFSIter, Set<String> inputAnnotationSet, String inputFeatureString, JCas outputViewJCas, String outputAnnotationString, String ouputFeatureString)
+  protected String processInputView(JCas inputViewJCas, 
+		  FSIterator<Annotation> contextAnnotationsFSIter, 
+		  Set<String> inputAnnotationSet, 
+		  String inputFeatureString, 
+		  JCas outputViewJCas, 
+		  String outputAnnotationString, 
+		  String ouputFeatureString)
     throws AnalysisEngineProcessException
   {
 /*  578 */     log("AnalysisEngine - processInputView");

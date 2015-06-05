@@ -132,12 +132,12 @@ public class CAS2InlineXMLAE extends CommonAE {
 	 * In this case, the CAS is converted to XML and written into the output file .
 	 */
 	@Override
-	protected String processInputView(JCas inputViewJCas,
-			FSIterator contextAnnotationsFSIter,
-			Set<String> inputAnnotationSet,
-			String inputFeatureString, JCas outputViewJCas,
-			String outputAnnotationString, String ouputFeatureString)
-	throws AnalysisEngineProcessException {
+	public String processInputView(JCas inputViewJCas_,
+			FSIterator<Annotation> contextAnnotationsFSIter,
+			Set<String> inputAnnotationSet, String inputFeatureString,
+			JCas outputViewJCas, String outputAnnotationString,
+			String ouputFeatureString) throws AnalysisEngineProcessException {
+		
 
 		// CAS 2 JCAS
 		//JCas inputViewJCas;
@@ -147,12 +147,12 @@ public class CAS2InlineXMLAE extends CommonAE {
 		//	throw new ResourceProcessException(e);
 		//}
 		//JCAS 2 CAS
-		CAS aCAS = inputViewJCas.getCas();
+		CAS aCAS = inputViewJCas_.getCas();
 
 		File outFile = null;
 
 		// retrieve the filename of the input file from the CAS
-		String inFileName = DocumentAnnotationUtils.retrieveSourceDocumentFileName(inputViewJCas);
+		String inFileName = DocumentAnnotationUtils.retrieveSourceDocumentFileName(inputViewJCas_);
 		String outFileName  = inFileName;
 		if (outFileName == null) {
 			outFileName = DateUtilities.buildARandomStringName(this);
@@ -181,7 +181,7 @@ public class CAS2InlineXMLAE extends CommonAE {
 
 		// La méthode requiert de retourner quelque chose 
 		// Le plus simple est de lui retourner l'image d'elle même
-		return inputViewJCas.getSofaDataString();
+		return inputViewJCas_.getSofaDataString();
 	}
 
 }

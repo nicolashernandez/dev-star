@@ -351,7 +351,7 @@ public class IOUtilities {
 	 * print a string to the file system
 	 * @param text
 	 * @param filename
-	 * @param append TODO
+	 * @param append 
 	 */
 	public static void writeToFS (String text, String filename, Boolean append) {
 		PrintWriter out = null;

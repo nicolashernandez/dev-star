@@ -1,2 +1,0 @@
-mv opennlp-maxent-pos-ftb+-201303041205.bin fr-pos.bin
-cat  ~/workspace/data/samples/doc/fr.text.utf8/JulesVerne.txt | opennlp SentenceDetector fr-sent.bin | opennlp TokenizerME fr-token.bin | opennlp POSTagger fr-ftbp.bin | opennlp ChunkerME fr-chunk.bin

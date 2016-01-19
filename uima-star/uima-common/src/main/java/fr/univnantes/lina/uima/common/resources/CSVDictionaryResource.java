@@ -37,75 +37,75 @@ import java.util.Scanner;
 
 
 public class CSVDictionaryResource
-  extends DictionaryResource
+extends DictionaryResource
 {
-  private static final String CSV_COLUMN_SEPARATOR = "\t";
-/* 26 */   private Boolean caseSensitive = Boolean.valueOf(true);
-  
-
-
-  public Boolean getCaseSensitive()
-  {
-/* 32 */     return this.caseSensitive;
-  }
-  
-
-
-  public void setCaseSensitive(Boolean caseSensitive)
-  {
-/* 39 */     this.caseSensitive = caseSensitive;
-  }
-  
+	private static final String CSV_COLUMN_SEPARATOR = "\t";
+	/* 26 */   private Boolean caseSensitive = Boolean.valueOf(true);
 
 
 
-  public CSVDictionaryResource() {}
-  
+	public Boolean getCaseSensitive()
+	{
+		/* 32 */     return this.caseSensitive;
+	}
 
 
 
-  public CSVDictionaryResource(Boolean caseSensitive)
-  {
-/* 52 */     setCaseSensitive(caseSensitive);
-  }
-  
+	public void setCaseSensitive(Boolean caseSensitive)
+	{
+		/* 39 */     this.caseSensitive = caseSensitive;
+	}
 
 
 
 
-  public void doParse(InputStream inputStream)
-    throws Exception
-  {
-/* 62 */     String delimiter = System.getProperty("line.separator");
-/* 63 */     Scanner scanner = new Scanner(inputStream);
-/* 64 */     scanner.useDelimiter(delimiter);
-/* 65 */     while (scanner.hasNext()) {
-/* 66 */       doParseCSVLine(scanner.next());
-    }
-/* 68 */     scanner.close();
-  }
-  
+	public CSVDictionaryResource() {}
 
 
 
-  private void doParseCSVLine(String line)
-    throws Exception
-  {
-/* 77 */     if ((line != null) && (!line.isEmpty()) && (!line.startsWith("#")))
-    {
 
-/* 80 */       String characters = line.trim();
-      
+	public CSVDictionaryResource(Boolean caseSensitive)
+	{
+		/* 52 */     setCaseSensitive(caseSensitive);
+	}
 
-/* 83 */       String[] columns = characters.split("\t");
-/* 84 */       ArrayList<String> values = new ArrayList();
-/* 85 */       for (int i = 1; i < columns.length; i++) {
-/* 86 */         values.add(columns[i]);
-      }
-/* 88 */       String key = getCaseSensitive().booleanValue() ? columns[0] : columns[0].toLowerCase();
-      
 
-/* 91 */       getRoot().add(key, 0, values);
-    }
-  }
+
+
+
+	public void doParse(InputStream inputStream)
+			throws Exception
+			{
+		/* 62 */     String delimiter = System.getProperty("line.separator");
+		/* 63 */     Scanner scanner = new Scanner(inputStream);
+		/* 64 */     scanner.useDelimiter(delimiter);
+		/* 65 */     while (scanner.hasNext()) {
+			/* 66 */       doParseCSVLine(scanner.next());
+		}
+		/* 68 */     scanner.close();
+			}
+
+
+
+
+	private void doParseCSVLine(String line)
+			throws Exception
+			{
+		/* 77 */     if ((line != null) && (!line.isEmpty()) && (!line.startsWith("#")))
+		{
+
+			/* 80 */       String characters = line.trim();
+
+
+			/* 83 */       String[] columns = characters.split("\t");
+			/* 84 */       ArrayList<String> values = new ArrayList();
+			/* 85 */       for (int i = 1; i < columns.length; i++) {
+				/* 86 */         values.add(columns[i]);
+			}
+			/* 88 */       String key = getCaseSensitive().booleanValue() ? columns[0] : columns[0].toLowerCase();
+
+						//System.out.println("Debug: CSVline characters "+characters);
+			/* 91 */       getRoot().add(key, 0, values);
+		}
+			}
 }

@@ -299,13 +299,12 @@ public class DictionaryAnnotatorFitAE extends  org.apache.uima.fit.component.JCa
 		//	caseSensitiveBoolean = DEFAULT_CASE_SENSITIVE_VALUE;
 		
 		//
-		this.resource = new CSVDictionaryResource(caseSensitiveBoolean);
-		ResourceUtils.loadAResource(this.resource, aContext,
-				"DictionaryResource", "DictionaryResourceFile");
-		
+		// FIXED 20161019 after having commented the two following lines we get access here to the resource content
+		//this.resource = new CSVDictionaryResource(caseSensitiveBoolean);
+		//ResourceUtils.loadAResource(this.resource, aContext,
+		//		"DictionaryResource", "DictionaryResourceFile");
 		// display the content of the resource
 		//System.out.println("Debug: resource.getRoot().toString() \n"+resource.getRoot().toString());
-		
 		
 		
 	}
@@ -363,9 +362,11 @@ public class DictionaryAnnotatorFitAE extends  org.apache.uima.fit.component.JCa
 							+ PARAM_FEATUREPATH_TO_SEARCH
 							+ " parameter. By default the process has been performed on the whole document text of the current view");
 			
-			//System.out.println("Debug: length>"+inputViewJCas
-			//		.getDocumentText().length()+"< getDocumentText>"+inputViewJCas
+			//System.err.println("Debug: length>"+aJCas
+			//		.getDocumentText().length()+"< getDocumentText>"+aJCas
 			//		.getDocumentText()+"<");
+			
+			//System.err.println("Debug: this.getRootNode()>"+this.getRootNode()+"<");
 			
 			this.recognize(aJCas, this.getRootNode(), 0, aJCas
 					.getDocumentText().length(), aJCas
@@ -398,7 +399,7 @@ public class DictionaryAnnotatorFitAE extends  org.apache.uima.fit.component.JCa
 		//
 		Map<PrefixTree, Branch> currentExploredBranches = new HashMap<PrefixTree, Branch>();
 		// if (debug)
-		// System.out.println("Debug: Start a new exploration of the tree with the first char");
+		//System.out.println("Debug: Start a new exploration of the tree with the first char");
 		currentExploredBranches.put(root, new Branch(annotationToCreateType,
 				0 + relativeBegin));
 
@@ -675,8 +676,9 @@ public class DictionaryAnnotatorFitAE extends  org.apache.uima.fit.component.JCa
 			//System.out.println("Debug: this.type.getName() >"+this.type.getName()+"<");
 					 // featuresHashMap>"+ featuresHashMap.keySet().toString()+"<");
 
-		//	System.out.println("Debug: this.type.getName() >"+this.type.getName()+"< featuresHashMap>"+ featuresHashMap.keySet().toString()+"<");
-
+			//System.err.println("Debug: this.type.getName() >"+this.type.getName()+"< featuresHashMap>"+ featuresHashMap.keySet().toString()+"<");
+			if (this.type == null) 
+				System.err.println("WARNING: attempt to create an annotation with a type null (means does not exist); check the specified annotation type names.");
 			AnnotationUtils.createAnnotation(aJCas, this.type.getName(),
 					featuresHashMap);
 			//

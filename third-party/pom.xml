@@ -12,7 +12,8 @@
 </properties>
   <modules>
   	<module>sequence-recognition-metrics</module>
-  	<module>choif</module> 
+    <!-- require sun.misc not available anymore package -->
+  	<!-- <module>choif</module>-->  
   </modules>
   
 </project>

@@ -396,6 +396,8 @@ public class JCasUtils
          * the method may be incomplete...
         */
        public static String getMetaDataDocumentName (JCas aJCas) {
+        System.out.println("WARNING: JCasUtils getMetaDataDocumentName code has been accidentaly deleted ");
+       
        String DEFAULT_DKPRO_DOCUMENTMETADATA = "de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData";
        String DEFAULT_SOURCE_DOCUMENT_INFORMATION_ANNOTATION = "org.apache.uima.examples.SourceDocumentInformation";
        String documentFileName =  "";
@@ -408,7 +410,7 @@ public class JCasUtils
 
                documentMetatData = 
                                (de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData) aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_DKPRO_DOCUMENTMETADATA)).iterator().get();
-               //System.out.println("Debug: dkpro documentTitle: " documentMetatData.getDocumentTitle());
+               //System.out.println("Debug: dkpro documentTitle: "+ documentMetatData.getDocumentTitle());
                documentFileName = documentMetatData.getDocumentTitle();
        }
        else {
@@ -422,7 +424,7 @@ public class JCasUtils
                documentMetatData = 
                                (de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData) aJCas.getAnnotationIndex(aJCas.getTypeSystem().g
 etType(DEFAULT_DKPRO_DOCUMENTMETADATA)).iterator().get();
-               //System.out.println("Debug: dkpro documentTitle: " documentMetatData.getDocumentTitle());
+               //System.out.println("Debug: dkpro documentTitle: "+ documentMetatData.getDocumentTitle());
                documentFileName = documentMetatData.getDocumentTitle();
        }
        else {
@@ -436,7 +438,7 @@ parator));
                        //System.out.println("Debug: Apache UIMA documentTitle: "+ documentFileName);
                }
        } }
-     }
+    } 
    }
 
 

@@ -397,10 +397,11 @@ public class JCasUtils
         */
        public static String getMetaDataDocumentName (JCas aJCas) {
         System.out.println("WARNING: JCasUtils getMetaDataDocumentName code has been accidentaly deleted ");
-       /*
+     
        String DEFAULT_DKPRO_DOCUMENTMETADATA = "de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData";
        String DEFAULT_SOURCE_DOCUMENT_INFORMATION_ANNOTATION = "org.apache.uima.examples.SourceDocumentInformation";
        String documentFileName =  "";
+         /*
        // DKPro representation
        de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData documentMetatData = null;
        // Apache UIMA representation
@@ -439,6 +440,7 @@ parator));
                }
        } }
     } */
+    return documentFileName;
    }
 
 

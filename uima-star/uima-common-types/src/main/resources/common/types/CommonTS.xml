@@ -246,6 +246,11 @@
 	 * day changed information</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
+        <featureDescription>
+          <name>beginConv</name>
+          <description>set to 1 if starts a conversation</description>
+          <rangeTypeName>uima.cas.Boolean</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>

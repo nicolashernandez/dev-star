@@ -384,4 +384,60 @@ public class JCasUtils
     
 /* 297 */     return artifactName;
   }
+
+
+
+       /*
+        * Based on the possible prence of DKPro or Apache UIMA meta data
+        * 
+        * return empty string if no value is available
+
+        * 18 juillet 2017 the following code is uncertain ; it results from an attempt to retreive an accidentaly deleted old uncommited code...
+         * the method may be incomplete...
+        */
+       public static String getMetaDataDocumentName (JCas aJCas) {
+       String DEFAULT_DKPRO_DOCUMENTMETADATA = "de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData";
+       String DEFAULT_SOURCE_DOCUMENT_INFORMATION_ANNOTATION = "org.apache.uima.examples.SourceDocumentInformation";
+       String documentFileName =  "";
+       // DKPro representation
+       de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData documentMetatData = null;
+       // Apache UIMA representation
+       org.apache.uima.examples.SourceDocumentInformation sourceDocumentInformation = null;
+
+       if (aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_DKPRO_DOCUMENTMETADATA)).iterator().isValid()) {     
+
+               documentMetatData = 
+                               (de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData) aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_DKPRO_DOCUMENTMETADATA)).iterator().get();
+               //System.out.println("Debug: dkpro documentTitle: " documentMetatData.getDocumentTitle());
+               documentFileName = documentMetatData.getDocumentTitle();
+       }
+       else {
+               if (aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_SOURCE_DOCUMENT_INFORMATION_ANNOTATION)).iterator().isValid()) {
+                       sourceDocumentInformation = (SourceDocumentInformation) aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_SOURCE_DOCUMENT_INFORMATION_ANNOTATION)).iterator().get();
+                       if (sourceDocumentInformation.getUri().lastIndexOf(File.separator) == -1)  documentFileName = sourceDocumentInformation.getUri();
+                       else documentFileName = sourceDocumentInformation.getUri().substring(sourceDocumentInformation.getUri().lastIndexOf(File.separator));
+
+       if (aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_DKPRO_DOCUMENTMETADATA)).iterator().isValid()) {     
+
+               documentMetatData = 
+                               (de.tudarmstadt.ukp.dkpro.core.api.metadata.type.DocumentMetaData) aJCas.getAnnotationIndex(aJCas.getTypeSystem().g
+etType(DEFAULT_DKPRO_DOCUMENTMETADATA)).iterator().get();
+               //System.out.println("Debug: dkpro documentTitle: " documentMetatData.getDocumentTitle());
+               documentFileName = documentMetatData.getDocumentTitle();
+       }
+       else {
+               if (aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_SOURCE_DOCUMENT_INFORMATION_ANNOTATION)).iterator().isValid()) {
+                       sourceDocumentInformation = (SourceDocumentInformation) aJCas.getAnnotationIndex(aJCas.getTypeSystem().getType(DEFAULT_SOUR
+CE_DOCUMENT_INFORMATION_ANNOTATION)).iterator().get();
+                       if (sourceDocumentInformation.getUri().lastIndexOf(File.separator) == -1)  documentFileName = sourceDocumentInformation.get
+Uri();
+                       else documentFileName = sourceDocumentInformation.getUri().substring(sourceDocumentInformation.getUri().lastIndexOf(File.se
+parator));
+                       //System.out.println("Debug: Apache UIMA documentTitle: "+ documentFileName);
+               }
+       } }
+     }
+   }
+
+
 }

@@ -1,0 +1,21 @@
+  License attached to the `fr.univnantes.lina.uima.textSegmenter` package
+  is Apache-2.0.
+  
+  The UIMA wrapper uses the `uk.ac.man.cs.choif` package which comes from the 
+	`C99-1.2-release.tgz` file, initially released by Freddy Choi.
+	This package was released under the following license:
+	_Free for educational, research and other non-profit making uses only. 
+	Copyright 1999._
+	See the `uk.ac.man.cs.choif.extend.Debugx` class for more details.
+	
+  {{{
+@InProceedings{choi_2000naacl,
+  author =       {Freddy Y. Y. Choi},
+  title =        {Advances in domain independent linear text segmentation},
+  booktitle =    {Proceedings of NAACL'00},
+  year =         {2000},
+  address =      {Seattle, USA},
+  month =        {April},
+  OPTannote =    {"choi00.ps.gz"}
+}
+}}}  

@@ -53,7 +53,6 @@
 			<groupId>fr.univnantes.lina.uima</groupId>
 			<artifactId>uima-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

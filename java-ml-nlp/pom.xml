@@ -40,11 +40,18 @@
 		</repository>
 	</repositories>
 	<dependencies>
-		<dependency>
+		<!-- 2017 07 19 previously only in a local repository ; may have some local adaptation-->
+<!--		<dependency>
 			<groupId>ky</groupId>
 			<artifactId>kylm</artifactId>
 			<version>20140117</version>
+		</dependency>-->
+		<dependency>
+			<groupId>com.github.steveash.kylm</groupId>
+			<artifactId>kylm</artifactId>
+			<version>1.1.4</version>
 		</dependency>
+
 		<!-- the oldest is 1.1.5 but it is not available -->
 		<dependency>
 			<groupId>edu.berkeley.nlp</groupId>

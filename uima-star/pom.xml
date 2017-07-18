@@ -43,11 +43,13 @@
 		<module>uima-shell</module>
 		<module>uima-mapper</module>
 		<module>uima-dictionary-annotator</module>
+		<!-- the following module is no present in the github repository -->
+		<!-- 
 		<module>uima-opennlp</module>
 		<module>uima-maltparser</module>
 		<module>uima-text-segmenter</module>
 		<module>uima-workflow</module>
-		<module>uima-common-types</module>
+		--><module>uima-common-types</module>
 	</modules>
 	<dependencies>
 		<dependency>

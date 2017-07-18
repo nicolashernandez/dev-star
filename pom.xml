@@ -35,8 +35,8 @@
 		<module>java-ml-nlp</module>
 		<module>uima-star</module>
 		<module>third-party</module>
-
-		<module>misc</module>
+		<!-- the following module is no present in the github repository -->
+		<!-- <module>misc</module>-->
 	</modules>
 	<dependencies>
 		<dependency>
